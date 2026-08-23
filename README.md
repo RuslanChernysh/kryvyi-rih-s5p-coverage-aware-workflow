@@ -110,6 +110,12 @@ Large scientific GeoTIFFs and final CSV/manifests are intentionally not required
 
 Citation metadata are provided in `CITATION.cff`. After the first Zenodo archive is minted, add the Zenodo DOI to the repository README and manuscript Data and Code Availability statement.
 
-## License
+## Rights and reuse
 
-A software license has **not yet been selected** in this preparation package. Select the intended license before publishing the repository if you want to grant reuse rights. Until a license is added, normal copyright restrictions apply.
+Copyright © 2026 Ruslan Chernysh. All rights reserved.
+
+The source code and associated technical materials in this repository are made publicly accessible for scientific transparency, scholarly review, methodological inspection, and citation. Public availability does not constitute the grant of an open-source software license.
+
+Viewing, reading, scholarly discussion, citation, and linking to this repository are permitted. Reuse, copying, modification, adaptation, redistribution, incorporation into other software or workflows, and commercial use of the source code or substantial portions of it require prior written permission from the copyright holder, except where otherwise permitted by applicable law.
+
+See [RIGHTS.md](RIGHTS.md) for the complete rights and reuse policy.

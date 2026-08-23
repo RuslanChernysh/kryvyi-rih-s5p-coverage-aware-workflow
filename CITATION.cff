@@ -17,5 +17,5 @@ keywords:
   - air pollution
   - reproducibility
   - Kryvyi Rih
-repository-code: "REPLACE_WITH_GITHUB_REPOSITORY_URL_AFTER_CREATION"
+repository-code: "https://github.com/RuslanChernysh/kryvyi-rih-s5p-coverage-aware-workflow"
 abstract: "Google Earth Engine implementation of a coverage-aware, pollutant-specific workflow for 2019–2024 Sentinel-5P/TROPOMI atmospheric-indicator monitoring over Kryvyi Rih, Ukraine."

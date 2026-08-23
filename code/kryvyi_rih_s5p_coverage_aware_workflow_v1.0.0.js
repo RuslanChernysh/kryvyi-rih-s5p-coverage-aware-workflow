@@ -1,3 +1,24 @@
+/*
+ * Coverage-aware Sentinel-5P workflow for atmospheric monitoring in Kryvyi Rih
+ *
+ * Copyright © 2026 Ruslan Chernysh. All rights reserved.
+ *
+ * This source code is made publicly accessible for scientific transparency,
+ * scholarly review, methodological inspection, and citation.
+ *
+ * Public availability does not constitute the grant of an open-source
+ * software license. Reuse, copying, modification, adaptation, redistribution,
+ * incorporation into other software or workflows, and commercial use of this
+ * source code or substantial portions of it require prior written permission
+ * from the copyright holder, except where otherwise permitted by applicable law.
+ *
+ * Citation or scholarly discussion of the methodology does not by itself grant
+ * permission to reuse or modify the source code.
+ *
+ * Full rights and reuse policy:
+ * https://github.com/RuslanChernysh/kryvyi-rih-s5p-coverage-aware-workflow/blob/main/RIGHTS.md
+ */
+
 /*** 0. MASTER CONFIGURATION ***/
 
 var CONFIG = {

@@ -1,3 +1,18 @@
+/*
+ * Sentinel-5P OFFL processor-version audit
+ *
+ * Copyright © 2026 Ruslan Chernysh. All rights reserved.
+ *
+ * This source code is publicly accessible for scientific transparency,
+ * scholarly review, methodological inspection, and citation.
+ * Reuse, copying, modification, redistribution, incorporation into other
+ * software or workflows, and commercial use require prior written permission,
+ * except where otherwise permitted by applicable law.
+ *
+ * See RIGHTS.md in the repository root for the complete rights and reuse policy:
+ * https://github.com/RuslanChernysh/kryvyi-rih-s5p-coverage-aware-workflow/blob/main/RIGHTS.md
+ */
+
 // Sentinel-5P OFFL processor-version audit
 // Metadata inventory for the Sentinel-5P OFFL collections used in the study.
 // Study period: 2019-2024.

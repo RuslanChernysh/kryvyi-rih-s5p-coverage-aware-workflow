@@ -16,6 +16,7 @@ The repository is intended to support transparent reproduction and audit of the 
 code/
   kryvyi_rih_s5p_coverage_aware_workflow_v1.0.0.js
   sentinel5p_processor_version_audit.js
+  sentinel5p_offl_processor_version_audit.js
 
 metadata/
   run_params.json
@@ -29,8 +30,10 @@ validation/
 
 docs/
   PUBLIC_RELEASE_AUDIT.md
+  GITHUB_PREPUBLICATION_CHECKLIST.md
 
 CITATION.cff
+SHA256SUMS.txt
 .gitignore
 README.md
 ```

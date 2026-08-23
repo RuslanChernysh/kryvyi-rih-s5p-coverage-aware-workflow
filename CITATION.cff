@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the archived software release and the associated article."
+title: "Coverage-aware Sentinel-5P workflow for atmospheric monitoring in Kryvyi Rih"
+type: software
+version: 1.0.0
+date-released: 2026-08-23
+authors:
+  - family-names: "Chernysh"
+    given-names: "Ruslan Volodymyrovych"
+keywords:
+  - Sentinel-5P
+  - TROPOMI
+  - Google Earth Engine
+  - NO2
+  - CO
+  - SO2
+  - air pollution
+  - reproducibility
+  - Kryvyi Rih
+repository-code: "REPLACE_WITH_GITHUB_REPOSITORY_URL_AFTER_CREATION"
+abstract: "Google Earth Engine implementation of a coverage-aware, pollutant-specific workflow for 2019–2024 Sentinel-5P/TROPOMI atmospheric-indicator monitoring over Kryvyi Rih, Ukraine."

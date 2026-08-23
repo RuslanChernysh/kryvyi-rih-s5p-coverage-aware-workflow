@@ -1,0 +1,64 @@
+{
+  "release_version": "v1.0.0",
+  "master_script_version": "ARTICLE4_MASTER_MONITORING_SYSTEM_V1_0_RELEASE",
+  "verified_stage1_version": "ARTICLE4_MULTIPOLLUTANT_ENGINE_V4_1_STAGE1_VERIFIED_R04",
+  "stage2a_version": "ARTICLE4_STAGE2A_YEAR_MATERIALIZATION_R02",
+  "stage2b_version": "ARTICLE4_STAGE2B_PUBLICATION_TABLES_R02_VERIFIED",
+  "stage2c_version": "ARTICLE4_STAGE2C_SPATIAL_PRODUCTS_ENGINE_R01_VERIFIED",
+  "stage2d_version": "ARTICLE4_STAGE2D_PUBLICATION_EXPORTS_ENGINE_R01_VERIFIED_FINAL",
+  "run_mode_at_publication_freeze": "FINAL_PUBLICATION_EXPORT",
+  "study_period": {
+    "start_year": 2019,
+    "end_year": 2024
+  },
+  "aoi": {
+    "id": "AOI_KRYVYI_RIH",
+    "earth_engine_asset_used_for_publication_run": "projects/ee-ruslan777chernysh/assets/KRYVYI_RIH_AOI",
+    "area_km2": 441.4874046016281,
+    "source_feature_count_before_dissolve": 8,
+    "geometry_after_dissolve": "Polygon"
+  },
+  "processing": {
+    "reduction_crs": "EPSG:4326",
+    "tile_scale": 8,
+    "max_pixels": 1000000000.0,
+    "hotspot_percentile": 90,
+    "strict_annual_month_count": 12,
+    "strict_season_month_count": 3,
+    "relative_change_baseline_epsilon": 1e-10
+  },
+  "pollutants": {
+    "NO2": {
+      "collection": "COPERNICUS/S5P/OFFL/L3_NO2",
+      "band": "tropospheric_NO2_column_number_density",
+      "aggregation": "daily-first",
+      "analysis_scale_m": 1113.2,
+      "temporal_support": "valid days"
+    },
+    "CO": {
+      "collection": "COPERNICUS/S5P/OFFL/L3_CO",
+      "band": "CO_column_number_density",
+      "aggregation": "daily-first",
+      "analysis_scale_m": 1113.2,
+      "temporal_support": "valid days"
+    },
+    "SO2": {
+      "collection": "COPERNICUS/S5P/OFFL/L3_SO2",
+      "band": "SO2_column_number_density",
+      "aggregation": "orbital-monthly",
+      "analysis_scale_m": 7000,
+      "temporal_support": "valid orbital observations"
+    }
+  },
+  "missing_data_policy": "Missing or invalid monthly data remain NA/masked and are never replaced by zero.",
+  "scientific_display_separation": "Scientific GeoTIFFs are independent from publication RGB/display products.",
+  "selected_publication_years": [
+    2019,
+    2024
+  ],
+  "selected_so2_season_year": 2024,
+  "selected_so2_seasons": [
+    "MAM",
+    "JJA"
+  ]
+}

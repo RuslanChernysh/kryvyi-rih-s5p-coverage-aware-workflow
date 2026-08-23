@@ -1,0 +1,30 @@
+# Operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.tmp
+*~
+
+# Local exports and large raster outputs
+*.tif
+*.tiff
+*.aux.xml
+*.zip
+
+# Local credentials / secrets
+.env
+.env.*
+*.pem
+*.key
+credentials*.json
+service-account*.json
+
+# Local scratch folders
+scratch/
+tmp/
+exports/

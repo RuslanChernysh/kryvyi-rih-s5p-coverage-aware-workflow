@@ -1,0 +1,242 @@
+SENTINEL-5P OFFL PROCESSOR-VERSION AUDIT
+Study period: 2019-01-01 to 2025-01-01 (2019-2024 inclusive)
+Audit run date: 2026-09-01
+Audit script: code/sentinel5p_processor_version_audit.js
+Earth Engine collections: COPERNICUS/S5P/OFFL/L3_NO2, COPERNICUS/S5P/OFFL/L3_CO, COPERNICUS/S5P/OFFL/L3_SO2
+
+PURPOSE
+Inventory the PROCESSOR_VERSION, ALGORITHM_VERSION, HARP_VERSION,
+PRODUCT_QUALITY, PROCESSING_STATUS and SPATIAL_RESOLUTION metadata of the
+Sentinel-5P OFFL Level-3 collections referenced by the publication workflow.
+This audit reads source metadata only and does not modify scientific outputs.
+
+SCOPE NOTE
+The released audit script applies the study-period filter but does not apply
+filterBounds(AOI). The asset counts and histograms below therefore describe the
+full Earth Engine OFFL collections for 2019-2024, not only the subset intersecting
+the Kryvyi Rih AOI. They establish collection-level processor provenance and
+heterogeneity. They must not be presented as exact AOI-input asset counts.
+
+INTERPRETATION SUMMARY
+- The 2019-2024 OFFL archive is not processor-homogeneous for NO2, CO or SO2.
+- Processor transitions occur within every individual year for all three pollutants.
+- Both endpoint years (2019 and 2024) contain mixed PROCESSOR_VERSION values.
+- NO2 and CO also contain mixed ALGORITHM_VERSION values in both endpoint years.
+- SO2 has one ALGORITHM_VERSION throughout the period: UPAS-SO2-DOAS-5.0.0.
+- HARP_VERSION is harp-1.5 for all NO2 and SO2 assets and for all CO assets with
+  reported HARP metadata. For 2,205 CO assets in 2019, HARP_VERSION is null;
+  this is recorded as missing metadata, not as evidence of a different HARP version.
+- Temporal contrasts must therefore acknowledge processor/algorithm transitions as
+  a source-provenance limitation. The audit does not by itself quantify their effect.
+
+======================================================================
+PROCESSOR AUDIT: NO2
+Collection: COPERNICUS/S5P/OFFL/L3_NO2
+Total assets 2019-2024: 30902
+
+PROCESSOR_VERSION all-period histogram:
+  1.2.2: 1116
+  1.3.0: 473
+  1.3.1: 908
+  1.3.2: 7379
+  1.4.0: 3036
+  2.2.0: 1929
+  2.3.1: 3440
+  2.4.0: 3375
+  2.5.0: 3574
+  2.6.0: 4046
+  2.7.1: 977
+  2.8.0: 649
+
+ALGORITHM_VERSION all-period histogram:
+  1.0.0: 1116
+  1.3.0: 8760
+  1.4.0: 3036
+  1.5.0: 5369
+  1.6.0: 11972
+  1.7.0: 649
+
+HARP_VERSION all-period histogram:
+  harp-1.5: 30902
+
+PRODUCT_QUALITY all-period histogram:
+  DEGRADED: 113
+  NOMINAL: 30789
+
+PROCESSING_STATUS all-period histogram:
+  OFFL-processing backup product/slant column product: 5
+  OFFL-processing nominal product: 30897
+
+SPATIAL_RESOLUTION all-period histogram:
+  5.5x3.5 km2: 17990
+  7x3.5km2: 12912
+
+NO2 2019 count: 5163
+  PROCESSOR_VERSION: 1.2.2=1116; 1.3.0=473; 1.3.1=908; 1.3.2=2666
+  ALGORITHM_VERSION: 1.0.0=1116; 1.3.0=4047
+  HARP_VERSION: harp-1.5=5163
+
+NO2 2020 count: 5178
+  PROCESSOR_VERSION: 1.3.2=4713; 1.4.0=465
+  ALGORITHM_VERSION: 1.3.0=4713; 1.4.0=465
+  HARP_VERSION: harp-1.5=5178
+
+NO2 2021 count: 5168
+  PROCESSOR_VERSION: 1.4.0=2571; 2.2.0=1929; 2.3.1=668
+  ALGORITHM_VERSION: 1.4.0=2571; 1.5.0=2597
+  HARP_VERSION: harp-1.5=5168
+
+NO2 2022 count: 5152
+  PROCESSOR_VERSION: 2.3.1=2772; 2.4.0=2380
+  ALGORITHM_VERSION: 1.5.0=2772; 1.6.0=2380
+  HARP_VERSION: harp-1.5=5152
+
+NO2 2023 count: 5077
+  PROCESSOR_VERSION: 2.4.0=995; 2.5.0=3574; 2.6.0=508
+  ALGORITHM_VERSION: 1.6.0=5077
+  HARP_VERSION: harp-1.5=5077
+
+NO2 2024 count: 5164
+  PROCESSOR_VERSION: 2.6.0=3538; 2.7.1=977; 2.8.0=649
+  ALGORITHM_VERSION: 1.6.0=4515; 1.7.0=649
+  HARP_VERSION: harp-1.5=5164
+
+======================================================================
+PROCESSOR AUDIT: CO
+Collection: COPERNICUS/S5P/OFFL/L3_CO
+Total assets 2019-2024: 31005
+
+PROCESSOR_VERSION all-period histogram:
+  1.2.2: 1115
+  1.3.0: 473
+  1.3.1: 908
+  1.3.2: 7386
+  1.4.0: 3038
+  2.2.0: 1930
+  2.3.1: 3444
+  2.4.0: 3375
+  2.5.0: 3659
+  2.6.0: 4051
+  2.7.1: 977
+  2.8.0: 649
+
+ALGORITHM_VERSION all-period histogram:
+  1.0.0: 1115
+  1.2.0: 11805
+  1.4.0: 5374
+  1.5.0: 12062
+  1.6.0: 649
+
+HARP_VERSION all-period histogram:
+  harp-1.5: 28800
+  null: 2205
+
+PRODUCT_QUALITY all-period histogram:
+  DEGRADED: 945
+  NOMINAL: 30060
+
+PROCESSING_STATUS all-period histogram:
+  Degraded: 945
+  Nominal: 30060
+
+SPATIAL_RESOLUTION all-period histogram:
+  5.5x7.0 km2: 18085
+  7x7km2: 12920
+
+CO 2019 count: 5164
+  PROCESSOR_VERSION: 1.2.2=1115; 1.3.0=473; 1.3.1=908; 1.3.2=2668
+  ALGORITHM_VERSION: 1.0.0=1115; 1.2.0=4049
+  HARP_VERSION: harp-1.5=2959; null=2205
+
+CO 2020 count: 5183
+  PROCESSOR_VERSION: 1.3.2=4718; 1.4.0=465
+  ALGORITHM_VERSION: 1.2.0=5183
+  HARP_VERSION: harp-1.5=5183
+
+CO 2021 count: 5171
+  PROCESSOR_VERSION: 1.4.0=2573; 2.2.0=1930; 2.3.1=668
+  ALGORITHM_VERSION: 1.2.0=2573; 1.4.0=2598
+  HARP_VERSION: harp-1.5=5171
+
+CO 2022 count: 5156
+  PROCESSOR_VERSION: 2.3.1=2776; 2.4.0=2380
+  ALGORITHM_VERSION: 1.4.0=2776; 1.5.0=2380
+  HARP_VERSION: harp-1.5=5156
+
+CO 2023 count: 5162
+  PROCESSOR_VERSION: 2.4.0=995; 2.5.0=3659; 2.6.0=508
+  ALGORITHM_VERSION: 1.5.0=5162
+  HARP_VERSION: harp-1.5=5162
+
+CO 2024 count: 5169
+  PROCESSOR_VERSION: 2.6.0=3543; 2.7.1=977; 2.8.0=649
+  ALGORITHM_VERSION: 1.5.0=4520; 1.6.0=649
+  HARP_VERSION: harp-1.5=5169
+
+======================================================================
+PROCESSOR AUDIT: SO2
+Collection: COPERNICUS/S5P/OFFL/L3_SO2
+Total assets 2019-2024: 30993
+
+PROCESSOR_VERSION all-period histogram:
+  01.01.05: 1230
+  01.01.06: 353
+  01.01.07: 4517
+  01.01.08: 1803
+  02.01.03: 1965
+  02.01.04: 3034
+  02.02.01: 3494
+  02.03.00: 1884
+  02.04.01: 5157
+  02.05.00: 1883
+  02.06.01: 5024
+  02.07.00: 649
+
+ALGORITHM_VERSION all-period histogram:
+  UPAS-SO2-DOAS-5.0.0: 30993
+
+HARP_VERSION all-period histogram:
+  harp-1.5: 30993
+
+PRODUCT_QUALITY all-period histogram:
+  NOMINAL: 30993
+
+PROCESSING_STATUS all-period histogram:
+  Degraded: 96
+  Nominal: 30897
+
+SPATIAL_RESOLUTION all-period histogram:
+  5.5x3.5km2: 23090
+  7x3.5km2: 7903
+
+SO2 2019 count: 5157
+  PROCESSOR_VERSION: 01.01.05=1230; 01.01.06=353; 01.01.07=3574
+  ALGORITHM_VERSION: UPAS-SO2-DOAS-5.0.0=5157
+  HARP_VERSION: harp-1.5=5157
+
+SO2 2020 count: 5176
+  PROCESSOR_VERSION: 01.01.07=943; 01.01.08=1803; 02.01.03=1965; 02.01.04=465
+  ALGORITHM_VERSION: UPAS-SO2-DOAS-5.0.0=5176
+  HARP_VERSION: harp-1.5=5176
+
+SO2 2021 count: 5166
+  PROCESSOR_VERSION: 02.01.04=2569; 02.02.01=2597
+  ALGORITHM_VERSION: UPAS-SO2-DOAS-5.0.0=5166
+  HARP_VERSION: harp-1.5=5166
+
+SO2 2022 count: 5160
+  PROCESSOR_VERSION: 02.02.01=897; 02.03.00=1884; 02.04.01=2379
+  ALGORITHM_VERSION: UPAS-SO2-DOAS-5.0.0=5160
+  HARP_VERSION: harp-1.5=5160
+
+SO2 2023 count: 5166
+  PROCESSOR_VERSION: 02.04.01=2778; 02.05.00=1883; 02.06.01=505
+  ALGORITHM_VERSION: UPAS-SO2-DOAS-5.0.0=5166
+  HARP_VERSION: harp-1.5=5166
+
+SO2 2024 count: 5168
+  PROCESSOR_VERSION: 02.06.01=4519; 02.07.00=649
+  ALGORITHM_VERSION: UPAS-SO2-DOAS-5.0.0=5168
+  HARP_VERSION: harp-1.5=5168
+
+END OF AUDIT RECORD

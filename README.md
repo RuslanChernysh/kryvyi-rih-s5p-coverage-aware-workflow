@@ -113,13 +113,19 @@ Large scientific GeoTIFFs and final CSV/manifests are intentionally not required
 
 ## Citation
 
-The archived v1.0.0 software release is available on Zenodo:
+To cite the exact archived version used for the published workflow:
 
-Chernysh, R. V. (2026). *Coverage-aware Sentinel-5P workflow for atmospheric monitoring in Kryvyi Rih* (Version v1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22071247
+> Chernysh, R. V. (2026). *Coverage-aware Sentinel-5P workflow for atmospheric monitoring in Kryvyi Rih* (Version v1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22071247
 
-DOI: https://doi.org/10.5281/zenodo.22071247
+Version-specific DOI for release `v1.0.0`:
 
-Citation metadata are also provided in `CITATION.cff`.
+[https://doi.org/10.5281/zenodo.22071247](https://doi.org/10.5281/zenodo.22071247)
+
+Concept DOI for all versions of the software:
+
+[https://doi.org/10.5281/zenodo.22071246](https://doi.org/10.5281/zenodo.22071246)
+
+When reproducibility requires identification of the exact code version, cite the version-specific DOI. Citation metadata are also provided in [`CITATION.cff`](CITATION.cff).
 
 ## Rights and reuse
 

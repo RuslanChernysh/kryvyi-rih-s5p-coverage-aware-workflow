@@ -1,8 +1,12 @@
 # Coverage-aware Sentinel-5P workflow for Kryvyi Rih
 
-Version: **v1.0.0 publication freeze candidate**
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22071247.svg)](https://doi.org/10.5281/zenodo.22071247)
+
+Current software release: **v1.0.0**
 
 This repository contains the frozen Google Earth Engine implementation used for the 2019–2024 Sentinel-5P/TROPOMI analysis of NO₂, CO and SO₂ over Kryvyi Rih, Ukraine.
+
+The archived and citable snapshot of release `v1.0.0` is available on Zenodo: [https://doi.org/10.5281/zenodo.22071247](https://doi.org/10.5281/zenodo.22071247).
 
 ## Scientific purpose
 

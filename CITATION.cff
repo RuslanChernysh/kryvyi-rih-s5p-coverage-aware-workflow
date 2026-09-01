@@ -3,6 +3,10 @@ message: "Please cite this software and the associated article when referencing 
 title: "Coverage-aware Sentinel-5P workflow for atmospheric monitoring in Kryvyi Rih"
 type: software
 version: 1.0.0
+doi: "10.5281/zenodo.22071247"
+date-released: 2026-08-23
+url: "https://doi.org/10.5281/zenodo.22071247"
+commit: "840b1a040efd81d4123133499be5f7ba5f966f55"
 authors:
   - family-names: "Chernysh"
     given-names: "Ruslan Volodymyrovych"

@@ -31,6 +31,7 @@ data/
 
 validation/
   README.md
+  sentinel5p_processor_version_audit_2019_2024.txt
 
 docs/
   PUBLIC_RELEASE_AUDIT.md
@@ -91,6 +92,11 @@ The operational OFFL source archive is not processor-homogeneous over 2019–202
 `code/sentinel5p_processor_version_audit.js`
 
 Run that script separately from the Master. It does not modify scientific outputs.
+The archived collection-level audit output is available in:
+
+`validation/sentinel5p_processor_version_audit_2019_2024.txt`
+
+The released audit script applies the study-period filter but does not apply an AOI spatial filter. Accordingly, the archived asset counts and histograms describe the full Earth Engine OFFL collections for 2019–2024 and should not be interpreted as exact Kryvyi Rih AOI input counts.
 
 ## Missing-data and completeness policy
 

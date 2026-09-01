@@ -19,11 +19,11 @@ Tagged source: [v1.0.0](https://github.com/RuslanChernysh/kryvyi-rih-s5p-coverag
 - [x] No obvious credentials, private keys, API tokens, or unintended private files were identified during the public-release audit.
 - [x] Large scientific GeoTIFFs are intentionally excluded from Git history.
 - [x] Release tag `v1.0.0` was created and archived on Zenodo.
-- [x] Repository files are covered by the published SHA-256 checksum manifest.
+- [x] Files contained in the tagged `v1.0.0` release are covered by the SHA-256 checksum manifest archived with that release.
 
 ## Outstanding reproducibility item
 
-- [x] Archive the full Google Earth Engine Console output from the processor-version audit in the `validation/` directory.
+- [x] Archive the complete structured results of the Google Earth Engine processor-version audit in the `validation/` directory.
 
 ## Release status
 

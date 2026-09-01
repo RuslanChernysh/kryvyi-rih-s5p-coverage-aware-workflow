@@ -23,7 +23,7 @@ Tagged source: [v1.0.0](https://github.com/RuslanChernysh/kryvyi-rih-s5p-coverag
 
 ## Outstanding reproducibility item
 
-- [ ] Archive the full Google Earth Engine Console output from the processor-version audit in the `validation/` directory or in a subsequent release.
+- [x] Archive the full Google Earth Engine Console output from the processor-version audit in the `validation/` directory.
 
 ## Release status
 

@@ -1,0 +1,25 @@
+SO2 missing-month root-cause audit — v1.0.3
+
+Purpose
+-------
+This audit was performed to determine the first point in the Sentinel-5P SO2 processing chain at which the recurrent January, November, and December monthly AOI results became unavailable during 2019-2024.
+
+Verified findings
+-----------------
+1. The audit evaluated exactly 72 monthly records for 2019-2024.
+2. The source collection COPERNICUS/S5P/OFFL/L3_SO2 contained source records for all 72 months.
+3. Eighteen months were affected: January, November, and December in every year from 2019 through 2024.
+4. For all 18 affected months, source records remained present after date filtering, AOI filtering, and the Master-equivalent preparation step.
+5. For all 18 affected months, the Master-equivalent native Sentinel-5P L3 mask yielded zero valid pixels within the Kryvyi Rih AOI.
+6. Consequently, AOI mean and temporal-support statistics were null/undefined for those months.
+7. All 18 affected months had corresponding Stage2A rows; therefore the missing values were not caused by skipped Stage2A materialization.
+8. No case was found in which a valid recomputed monthly AOI result was missing from Stage2A.
+9. The final first-failure summary was:
+   - 18/72 months: NO_VALID_AOI_PIXELS_AFTER_NATIVE_L3_MASK
+   - 54/72 months: SOURCE_COMPOSITE_AND_STAGE2A_ROW_PRESENT
+
+Interpretation
+--------------
+The recurrent SO2 missing months are therefore attributed to zero valid AOI coverage after the native L3 masking in the Master-equivalent SO2 branch, not to absent source collection records and not to downstream Stage2A materialization failure.
+
+This audit does not modify the Master code, source assets, Stage2A assets, or publication outputs.

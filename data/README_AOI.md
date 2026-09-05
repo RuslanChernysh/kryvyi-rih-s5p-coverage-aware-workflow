@@ -1,22 +1,68 @@
-# Kryvyi Rih AOI
+# Area of Interest (AOI)
 
-The publication analysis used the official administrative boundary of Kryvyi Rih.
+## Publication AOI
 
-Publication-run provenance:
+The area of interest used for the publication analysis represents Kryvyi Rih, Ukraine.
 
-- Earth Engine asset: `projects/ee-ruslan777chernysh/assets/KRYVYI_RIH_AOI`
+AOI identifier:
+
+`AOI_KRYVYI_RIH`
+
+Google Earth Engine asset used for the frozen publication run:
+
+`projects/ee-ruslan777chernysh/assets/KRYVYI_RIH_AOI`
+
+The source asset contained **8 polygon features**, which were dissolved into a single analysis geometry before processing.
+
+Publication-run AOI area:
+
+**441.4874046016281 km²**
+
+Geometry type after dissolve:
+
+`Polygon`
+
+These values are preserved as provenance information for the exact geometry used to generate the archived scientific results.
+
+## Reproduction in Google Earth Engine
+
+The Earth Engine asset path above belongs to the publication processing environment and should not be assumed to be accessible from another user's Earth Engine account.
+
+To reproduce the workflow, an independent user should:
+
+1. obtain an appropriate administrative-boundary geometry for Kryvyi Rih;
+2. upload or construct that geometry in their own Google Earth Engine project;
+3. dissolve multipart source features into the analysis geometry where required;
+4. assign the resulting asset path to `CONFIG.aoiAsset`;
+5. verify the geometry and area before running the analysis.
+
+For comparison with the publication configuration, the reconstructed AOI should be checked against the archived provenance values:
+
 - AOI ID: `AOI_KRYVYI_RIH`
-- source polygon features before dissolve: 8
-- final geometry: one dissolved Polygon
-- final AOI area: 441.4874046016281 km²
+- source feature count before dissolve: `8`
+- geometry after dissolve: `Polygon`
+- publication-run area: `441.4874046016281 km²`
 
-## For independent reproduction
+## Important reproducibility note
 
-The private/public accessibility of the original Earth Engine asset may differ from the publication environment.
+The provenance information above identifies the geometry used for the publication run but, by itself, does not guarantee exact coordinate-level reconstruction of that geometry from an independent boundary source.
 
-A re-user should either:
+Accordingly, a separately reconstructed administrative boundary should be treated as an equivalent study-area reconstruction rather than assumed to be byte-for-byte or coordinate-for-coordinate identical to the original Earth Engine asset.
 
-1. obtain the official municipal administrative-boundary layer from the cited municipal geospatial source, dissolve the 8 source polygon features into one geometry, upload it to their own Earth Engine project, and replace `CONFIG.aoiAsset`; or
-2. use an AOI file supplied with the archived dataset if redistribution under the source licence is confirmed.
+The exact publication results archived in this repository were generated using the Earth Engine asset identified above.
 
-The AOI must not be redefined from the observed pollutant signal because the publication design intentionally uses an administratively defined boundary.
+## Related metadata
+
+Additional AOI and processing parameters are recorded in:
+
+`../metadata/run_params.json`
+
+The scientific workflow using this AOI is stored in:
+
+`../code/kryvyi_rih_s5p_coverage_aware_workflow.js`
+
+## Rights and reuse
+
+The AOI provenance information is provided for scientific transparency and reproducibility documentation.
+
+Rights and reuse conditions for repository materials are described in the repository-level `RIGHTS.md`.

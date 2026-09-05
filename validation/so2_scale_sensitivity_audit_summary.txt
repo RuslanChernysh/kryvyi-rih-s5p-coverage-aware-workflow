@@ -1,0 +1,83 @@
+SO2 SCALE SENSITIVITY AUDIT — VALIDATION SUMMARY
+
+Study
+-----
+Coverage-aware Sentinel-5P workflow for atmospheric monitoring in Kryvyi Rih
+
+Audit purpose
+-------------
+To test whether the central 2024 SO2 seasonal conclusion is robust to reasonable AOI zonal-reduction scales. The audit does not search for an optimal scale and does not modify the Master workflow or publication products.
+
+Processing held constant
+------------------------
+- Sentinel-5P collection: COPERNICUS/S5P/OFFL/L3_SO2
+- Band: SO2_column_number_density
+- Aggregation: ORBITAL_MONTHLY -> equal-weight seasonal mean
+- Native Earth Engine L3 masking retained
+- No additional PRODUCT_QUALITY or qa_value filter
+- Same Kryvyi Rih AOI
+- Same MAM 2024 months: March, April, May
+- Same JJA 2024 months: June, July, August
+- Only the AOI reduction scale was varied
+
+Scales tested
+-------------
+1113.2 m
+3500 m
+5500 m
+7000 m
+
+Verified results
+----------------
+1113.2 m:
+- MAM mean = 0.0005405534 mol/m2
+- JJA mean = 0.0000629826 mol/m2
+- MAM/JJA = 8.5826
+- Direction: MAM > JJA
+- Valid reduction cells: 698 / 698
+
+3500 m:
+- MAM mean = 0.0005522910 mol/m2
+- JJA mean = 0.0000673612 mol/m2
+- MAM/JJA = 8.1989
+- Direction: MAM > JJA
+- Valid reduction cells: 104 / 104
+
+5500 m:
+- MAM mean = 0.0005796522 mol/m2
+- JJA mean = 0.0000645339 mol/m2
+- MAM/JJA = 8.9821
+- Direction: MAM > JJA
+- Valid reduction cells: 47 / 47
+
+7000 m:
+- MAM mean = 0.0005798031 mol/m2
+- JJA mean = 0.0000655482 mol/m2
+- MAM/JJA = approximately 8.8454
+- Direction: MAM > JJA
+
+Robustness conclusion
+---------------------
+Across all tested zonal-reduction scales, the sign of the seasonal contrast was unchanged: MAM remained higher than JJA. The MAM/JJA ratio ranged from 8.1989 to 8.9821, preserving both direction and order of magnitude. The central SO2 seasonal conclusion is therefore not an artifact of using the predefined 7000 m AOI reduction scale.
+
+Decision
+--------
+STAGE 7 STATUS: PASSED / CLOSED
+
+Scientific processing-code correction required: NO
+Publication-result recalculation required: NO
+Master SO2 scale change required: NO
+Manuscript clarification required: YES
+Validation/reproducibility documentation update required: YES
+
+Manuscript implication
+----------------------
+The Methods should describe 7000 m as a predefined AOI zonal-reduction scale, not as native TROPOMI spatial resolution or an empirically optimized scale.
+
+A concise Results statement may report that testing 1113.2, 3500, 5500, and 7000 m preserved MAM > JJA and yielded MAM/JJA ratios of approximately 8.20-8.98.
+
+Technical note
+--------------
+The Earth Engine composite can report a generic/default projection after collection reduction; this must not be interpreted as the physical TROPOMI footprint or native spatial resolution.
+
+The pixelArea-derived valid-area percentage can slightly exceed 100% at coarse reduction scales because of raster-grid edge sampling. These values are diagnostic only and should not be reported as physical coverage percentages in the manuscript.

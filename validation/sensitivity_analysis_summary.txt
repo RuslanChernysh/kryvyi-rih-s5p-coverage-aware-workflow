@@ -1,0 +1,57 @@
+SENSITIVITY ANALYSIS AUDIT — VALIDATION SUMMARY
+
+Study: Coverage-aware Sentinel-5P workflow for atmospheric monitoring in Kryvyi Rih
+Period: 2019-2024
+Status: PASSED / CLOSED
+
+Purpose
+-------
+To test whether the principal reported results are sensitive to alternative diagnostic temporal-support thresholds without modifying the Master scientific processing.
+
+Verified structural checks
+--------------------------
+- Expected Stage-2A rows: 216
+- Actual Stage-2A rows: 216
+- Duplicate pollutant-month keys: 0
+
+NO2 / CO diagnostic thresholds
+------------------------------
+Scenarios: BASE, >=10%, >=20%, >=25% mean temporal-support fraction.
+
+NO2:
+- BASE: 2019 = 12/12; 2024 = 12/12; endpoint contrast = -20.0013%
+- >=10%: 2019 = 12/12; 2024 = 12/12; endpoint contrast = -20.0013%
+- >=20%: 2019 = 12/12; 2024 = 11/12; diagnostic endpoint contrast = -22.2298%
+- >=25%: 2019 = 9/12; 2024 = 10/12; diagnostic endpoint contrast = -19.1697%
+- Direction and order of magnitude of the NO2 decrease remained stable across all tested scenarios.
+- Endpoint spatial support remained complete in the reported diagnostics (minimum valid area = 100%; AOI reduction sample count = 698 for both endpoint years).
+
+CO:
+- BASE / >=10% / >=20% / >=25% all retained 12/12 months in 2019 and 2024.
+- Endpoint contrast remained +0.4625% in all scenarios.
+- No tested threshold changed the endpoint result.
+
+SO2 diagnostic thresholds
+-------------------------
+Scenarios: minimum mean valid orbital contributions >=1, >=3, >=5.
+
+- >=1: 54/72 accepted months; MAM 2024 = 3/3; JJA 2024 = 3/3; MAM/JJA = 8.8454
+- >=3: 52/72 accepted months; MAM 2024 = 3/3; JJA 2024 = 3/3; MAM/JJA = 8.8454
+- >=5: 48/72 accepted months; MAM 2024 = 3/3; JJA 2024 = 3/3; MAM/JJA = 8.8454
+
+Seasonal AOI means remained unchanged in all three scenarios:
+- MAM 2024 = 0.0005798031 mol/m2
+- JJA 2024 = 0.0000655482 mol/m2
+
+Decision
+--------
+Scientific processing-code correction required: NO
+Publication-result recalculation required: NO
+Manuscript clarification required: YES
+Supplementary/validation documentation required: YES
+
+Interpretation
+--------------
+The tested sensitivity thresholds did not reverse or materially alter the main reported conclusions. NO2 retained a negative endpoint contrast of approximately -19.17% to -22.23% across the diagnostic scenarios, CO remained unchanged at +0.4625%, and the SO2 MAM/JJA 2024 contrast remained 8.8454 under >=1, >=3, and >=5 orbital-support scenarios.
+
+The thresholds are diagnostic robustness checks only and are not new Master acceptance rules.

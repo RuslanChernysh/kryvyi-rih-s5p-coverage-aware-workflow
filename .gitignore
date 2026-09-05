@@ -1,30 +1,40 @@
 # Operating-system files
 .DS_Store
 Thumbs.db
-Desktop.ini
 
-# Editor/IDE files
+# Editor / IDE files
 .vscode/
 .idea/
 *.swp
-*.tmp
-*~
+*.swo
 
-# Local exports and large raster outputs
+# Temporary and backup files
+*.tmp
+*.temp
+*.bak
+*~
+*.log
+
+# Local archives
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+
+# Earth Engine / local working exports
+exports/
+output/
+outputs/
+tmp/
+temp/
+
+# Large raster products are ignored by default
 *.tif
 *.tiff
-*.aux.xml
-*.zip
 
-# Local credentials / secrets
-.env
-.env.*
-*.pem
-*.key
-credentials*.json
-service-account*.json
-
-# Local scratch folders
-scratch/
-tmp/
-exports/
+# Scientific GeoTIFFs intentionally archived in the
+# publication reproducibility package are tracked
+!data/rasters/
+!data/rasters/*.tif
+!data/rasters/*.tiff

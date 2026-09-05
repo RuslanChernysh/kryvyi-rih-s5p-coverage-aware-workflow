@@ -1,0 +1,87 @@
+CRITICAL AUDIT DECISION SUMMARY — v1.0
+Coverage-aware Sentinel-5P workflow for atmospheric monitoring in Kryvyi Rih
+
+Purpose
+-------
+This decision record consolidates the outcomes of two post-release critical audits:
+1. Pixel completeness + persistence audit.
+2. SO2 missing-month root-cause audit.
+
+Decision table
+--------------
+Pixel completeness
+Passed: YES
+Needs manuscript text change: YES
+Needs scientific code change: NO
+Needs result recalculation: NO
+
+Persistence mask
+Passed: YES
+Needs manuscript text change: YES
+Needs scientific code change: NO
+Needs result recalculation: NO
+
+SO2 missing months
+Passed: YES
+Needs manuscript text change: YES
+Needs scientific code change: NO
+Needs result recalculation: NO
+
+Audit 1 — Pixel completeness and persistence
+--------------------------------------------
+NO2:
+- 528 cells had an annual result in all six years.
+- 466 cells had 12/12 valid months in all six years.
+- In 2021, 466 cells had 12/12 valid months; the remaining annual-result cells had 11 valid months.
+- Original-like persistent 6/6 hotspot cells: 9.
+- Strict-completeness persistent 6/6 hotspot cells: 9.
+- Original 6/6 hotspot cells excluded by the strict 12/12 common mask: 0.
+
+CO:
+- 528 cells had an annual result in all six years.
+- 528 cells had 12/12 valid months in all six years.
+- Original-like persistent 6/6 hotspot cells: 0.
+- Strict-completeness persistent 6/6 hotspot cells: 0.
+- Original 6/6 hotspot cells excluded by the strict 12/12 common mask: 0.
+
+Decision from Audit 1:
+The strict common 12/12 completeness check did not remove any NO2 cell classified as a persistent 6/6 hotspot and did not alter the absence of CO 6/6 persistent hotspots. Result recalculation is not required on the basis of this audit. The manuscript should distinguish AOI/period-level completeness from per-cell monthly completeness and report the strict-mask verification.
+
+Audit 2 — SO2 missing-month root cause
+--------------------------------------
+- Exactly 72 monthly periods were audited for 2019-2024.
+- Source records in COPERNICUS/S5P/OFFL/L3_SO2 were present for all 72 months.
+- Eighteen affected months were identified: January, November, and December in every year from 2019 through 2024.
+- For all 18 affected months, source records remained present after date filtering, AOI filtering, and Master-equivalent preparation.
+- For all 18 affected months, the Master-equivalent native Sentinel-5P L3 mask yielded zero valid pixels within the Kryvyi Rih AOI.
+- Consequently, AOI mean and temporal-support statistics were null/undefined.
+- Corresponding Stage2A rows existed for all 18 affected months.
+- No case was found in which a valid recomputed monthly AOI result was absent from Stage2A.
+- Final first-failure classification:
+  * 18/72 months: NO_VALID_AOI_PIXELS_AFTER_NATIVE_L3_MASK
+  * 54/72 months: SOURCE_COMPOSITE_AND_STAGE2A_ROW_PRESENT
+
+Decision from Audit 2:
+The recurrent SO2 missing months were not caused by absent source collection records, skipped Stage2A materialization, or downstream aggregation failure. Their first verified failure point was zero valid AOI coverage after the native L3 masking used by the Master-equivalent SO2 branch. The 54/72 valid-month result therefore does not require recalculation on the basis of this audit.
+
+Final Stage 3 decision
+----------------------
+STAGE 3 STATUS: PASSED / CLOSED
+
+Scientific processing-code correction required: NO
+Publication-result recalculation required: NO
+Manuscript clarification required: YES
+Validation/reproducibility documentation update required: YES
+
+Required manuscript actions
+---------------------------
+1. Methods: distinguish AOI/period-level completeness from per-cell monthly completeness.
+2. Methods / QA-QC: state that a strict common 12/12 per-cell completeness audit was performed for persistence.
+3. Results: report that the nine NO2 6/6 persistent hotspot cells were retained under the strict common-completeness mask; CO remained at zero 6/6 persistent hotspot cells.
+4. Methods / Results for SO2: document the root-cause audit and state that the 18 recurrent missing monthly AOI results had source records but zero valid AOI pixels after native L3 masking.
+5. Interpretation: preserve NA/null semantics; unavailable observations must not be interpreted as zero concentration.
+6. Reproducibility: retain the underlying audit scripts/results and this decision record in the validation package.
+
+Versioning note
+---------------
+This document records post-release validation work. It does not modify the archived v1.0.0 scientific snapshot. The validation evidence and associated documentation can be included in a subsequent repository release after all planned audits and manuscript revisions are completed.

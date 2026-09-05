@@ -1,4 +1,4 @@
-// ARTICLE4_PIXEL_COMPLETENESS_PERSISTENCE_AUDIT_V1_0
+// ARTICLE4_PIXEL_COMPLETENESS_PERSISTENCE_AUDIT
 // Read-only diagnostic audit for Kryvyi Rih, 2019-2024.
 // Pollutants: NO2 and CO. No exports or source assets are modified.
 

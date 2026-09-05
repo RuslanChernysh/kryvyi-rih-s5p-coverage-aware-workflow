@@ -1,0 +1,136 @@
+PIXEL COMPLETENESS + PERSISTENCE AUDIT — SUMMARY
+
+Purpose
+-------
+This validation audit was performed to distinguish AOI-level calendar completeness from per-pixel monthly completeness and to verify whether the persistence calculation could be biased by masked annual hotspot pixels being treated as non-hotspots.
+
+Study configuration
+-------------------
+Study area: Kryvyi Rih AOI
+AOI asset: projects/ee-ruslan777chernysh/assets/KRYVYI_RIH_AOI
+Study period: 2019-2024
+Audit scale: 1113.2 m
+Audit CRS: EPSG:4326
+Hotspot definition: annual P90 threshold
+Pollutants audited: NO2 and CO
+
+Verified findings — NO2
+-----------------------
+1. Annual-result cells:
+   - 2019: 528
+   - 2020: 528
+   - 2021: 528
+   - 2022: 528
+   - 2023: 528
+   - 2024: 528
+
+2. Cells with 12/12 valid monthly contributions:
+   - 2019: 528
+   - 2020: 528
+   - 2021: 466
+   - 2022: 528
+   - 2023: 528
+   - 2024: 528
+
+3. Common six-year masks:
+   - Cells with an annual result in all six years: 528
+   - Cells valid in at least one year but lacking an annual result in another year: 0
+   - Cells with 12/12 valid months in all six years: 466
+
+4. Annual P90 thresholds:
+   - 2019: 0.00005455312657431932
+   - 2020: 0.00005036811126046814
+   - 2021: 0.000054925441872910596
+   - 2022: 0.00004084810279891826
+   - 2023: 0.000038283820686046965
+   - 2024: 0.000042982475254878714
+
+5. Annual hotspot-cell counts:
+   - 2019: 53
+   - 2020: 54
+   - 2021: 54
+   - 2022: 54
+   - 2023: 54
+   - 2024: 50
+
+6. Persistence result:
+   - Original-like 6/6 hotspot cells: 9
+   - Strict common-mask 6/6 hotspot cells: 9
+   - Original 6/6 cells excluded by the strict 12/12 common mask: 0
+
+Interpretation — NO2
+--------------------
+The audit confirms that AOI-level annual availability does not imply 12/12 monthly completeness for every individual cell. In 2021, 528 cells had an annual result, but only 466 cells had valid contributions from all 12 months.
+
+However, the stricter common-mask test did not remove any of the nine NO2 cells classified as hotspots in all six years. Therefore, the identified 6/6 NO2 persistence pattern is not an artifact of incomplete monthly support in the cells that define the persistent hotspot set.
+
+Verified findings — CO
+----------------------
+1. Annual-result cells:
+   - 2019: 528
+   - 2020: 528
+   - 2021: 528
+   - 2022: 528
+   - 2023: 528
+   - 2024: 528
+
+2. Cells with 12/12 valid monthly contributions:
+   - 2019: 528
+   - 2020: 528
+   - 2021: 528
+   - 2022: 528
+   - 2023: 528
+   - 2024: 528
+
+3. Common six-year masks:
+   - Cells with an annual result in all six years: 528
+   - Cells valid in at least one year but lacking an annual result in another year: 0
+   - Cells with 12/12 valid months in all six years: 528
+
+4. Annual P90 thresholds:
+   - 2019: 0.03533327324814032
+   - 2020: 0.03534985582033793
+   - 2021: 0.03747065095552083
+   - 2022: 0.031978352793625424
+   - 2023: 0.034946199506521225
+   - 2024: 0.035008385988166094
+
+5. Annual hotspot-cell counts:
+   - 2019: 54
+   - 2020: 53
+   - 2021: 54
+   - 2022: 55
+   - 2023: 53
+   - 2024: 58
+
+6. Persistence result:
+   - Original-like 6/6 hotspot cells: 0
+   - Strict common-mask 6/6 hotspot cells: 0
+   - Original 6/6 cells excluded by the strict 12/12 common mask: 0
+
+Interpretation — CO
+-------------------
+CO is fully complete at the audited cell level for all six years: all 528 annual-result cells have 12/12 valid monthly contributions in every year. The original-like and strict persistence results are therefore identical.
+
+Overall conclusion
+------------------
+The audit supports the following methodological conclusions:
+
+- AOI-level calendar completeness and per-pixel monthly completeness must be described separately.
+- For NO2, one year (2021) contains cells with 11 rather than 12 valid monthly contributions, so a strict per-pixel common mask is the appropriate reference for multi-year persistence validation.
+- The strict common-mask check leaves the NO2 6/6 persistent-hotspot result unchanged (9 cells), and no 6/6 hotspot cell is excluded by the stricter 12/12 criterion.
+- For CO, all 528 cells satisfy 12/12 completeness in all six years, and persistence is unaffected by masking logic.
+- No recalculation of the reported 6/6 persistence result is required on the basis of this audit.
+- The Master scientific workflow, source assets, and publication outputs were not modified by this validation audit.
+
+Recommended use in manuscript
+-----------------------------
+The manuscript should explicitly distinguish:
+(1) AOI-level presence of expected monthly products, and
+(2) per-cell completeness based on the number of valid monthly contributions.
+
+For multi-year persistence interpretation, the strict common-mask validation can be cited as evidence that the reported NO2 6/6 persistent-hotspot cells are retained under a 12/12-per-year completeness requirement across all six years.
+
+Recommended repository location
+-------------------------------
+validation/pixel_completeness_persistence_audit_summary.txt

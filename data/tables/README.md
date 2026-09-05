@@ -1,6 +1,6 @@
 # Publication data tables
 
-This directory contains the tabular data products used to support the analyses, quality-control assessment, figures, and reported results of the Kryvyi Rih Sentinel-5P study for 2019–2024.
+This directory contains the principal tabular data products used to support the analyses, quality-control assessment, and reported results of the Kryvyi Rih Sentinel-5P study for 2019–2024.
 
 The files are direct publication-run outputs or derived reporting tables associated with the archived scientific workflow.
 
@@ -8,9 +8,9 @@ The files are direct publication-run outputs or derived reporting tables associa
 
 ### `ARTICLE4_FINAL_TABLE1_METHOD_METADATA_2019_2024_R01.csv`
 
-Methodological metadata associated with the final publication workflow.
+Methodological metadata table for the final publication workflow.
 
-This table records key processing and analysis settings used to document the methodological configuration of the study and support reproducibility of the reported results.
+This file records the principal processing configuration and methodological parameters required to interpret the generated Sentinel-5P products and reported results.
 
 ---
 
@@ -26,7 +26,7 @@ This table contains the monthly atmospheric-pollutant statistics used for tempor
 
 Monthly quality-control and data-completeness table.
 
-It records temporal-support and QC information used to evaluate the reliability and availability of monthly Sentinel-5P products before their use in subsequent analyses.
+It records temporal-support and QC information used to evaluate the reliability and availability of the monthly Sentinel-5P products before their use in subsequent analyses.
 
 ---
 
@@ -34,53 +34,53 @@ It records temporal-support and QC information used to evaluate the reliability 
 
 Seasonal and annual summary table for 2019–2024.
 
-This table provides aggregated statistics used for interannual and seasonal interpretation of the pollutant-specific results.
+This file provides aggregated reporting statistics used to characterize temporal patterns across the study period and supports the corresponding results presented in the publication.
 
 ---
 
 ### `ARTICLE4_FINAL_LONG_TERM_SUMMARY_2019_2024_R01.csv`
 
-Long-term summary of the principal study-period results.
+Long-term summary of the analysed Sentinel-5P products for the complete 2019–2024 study period.
 
-This file provides compact reporting-level statistics derived from the 2019–2024 analysis and supports interpretation of long-term spatial and temporal patterns.
+This table provides consolidated statistics used for long-term comparison and interpretation of pollutant-specific results.
 
 ---
 
 ### `ARTICLE4_SO2_COMPLETE_SEASON_CANDIDATES_2019_2024_R01.csv`
 
-Candidate complete seasons identified for the SO2 analysis.
+Quality-controlled candidate seasons for the SO2 processing branch.
 
-This table documents the evaluation of seasonal data completeness used to determine which SO2 periods provide sufficient temporal support for subsequent seasonal comparison.
-
----
-
-### `ARTICLE4_FIG3_TIME_SERIES_DATA_2019_2024_R01.csv`
-
-Source data for the study-period time-series figure.
-
-The file contains the tabular values used to construct the temporal visualization and provides a machine-readable record of the values represented in the corresponding publication figure.
-
----
-
-### `ARTICLE4_FIG7_AVAILABILITY_DATA_2019_2024_R01.csv`
-
-Source data for the data-availability / temporal-support figure.
-
-This file documents the availability information used to visualize differences in temporal support across the analysed Sentinel-5P products.
+This file documents the complete-season candidates evaluated under the SO2-specific temporal-support logic and supports transparent selection of seasonal SO2 products used in the publication analysis.
 
 ---
 
 ### `ARTICLE4_FINAL_ACCEPTANCE_MANIFEST_2019_2024_R01.csv`
 
-Final acceptance-status table for the publication-run outputs.
+Final acceptance record for publication-run outputs.
 
-It records the acceptance or eligibility status of evaluated products and provides an additional traceability layer between quality-control assessment and the products retained for scientific interpretation.
+This file documents the acceptance status of the evaluated products and provides an additional provenance layer linking workflow outputs to the final publication package.
 
-## Scope
+## Figure-supporting data
 
-These tables are provided as supporting scientific data for the archived workflow and associated manuscript. They should be interpreted together with the processing methodology, quality-control rules, spatial products, and provenance documentation contained elsewhere in this repository.
+Machine-readable source data used specifically for publication figures are stored separately in:
 
-Missing or unavailable observations are preserved according to the workflow logic and should not be interpreted as zero pollutant values.
+`../figure_data/`
+
+This separation distinguishes general analytical and quality-control tables from data products prepared specifically to support individual publication figures.
+
+## Interpretation
+
+The tables in this directory should be interpreted together with the methodological documentation, scientific raster products, figure-supporting data, and provenance manifests included in this repository.
+
+Missing or unavailable observations are preserved according to the workflow logic and must not be interpreted as zero pollutant values.
+
+Pollutant-specific processing branches and quality-control rules should be considered when comparing results across NO2, CO, and SO2.
+
+## Reproducibility
+
+These tables provide machine-readable records of the numerical results, methodological configuration, quality-control assessment, and publication-selection logic generated by the archived scientific workflow.
+
+Together with the source code, raster products, figure-supporting data, and manifests, they support traceability from processing decisions to the reported scientific results.
 
 ## Reuse and citation
 

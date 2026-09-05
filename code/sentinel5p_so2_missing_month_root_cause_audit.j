@@ -1150,14 +1150,17 @@ AUDIT_TABLE.evaluate(
       'No Master code, source asset, Stage2A asset, or publication output was modified.'
     );
 
-  },
-  function(error) {
-
     print(
-      'ERROR while evaluating AUDIT_TABLE:'
+      '=================================================='
     );
 
-    print(error);
+    print(
+      'SO2 ROOT-CAUSE AUDIT COMPLETE'
+    );
+
+    print(
+      'No Master code, source asset, Stage2A asset, or publication output was modified.'
+    );
 
   }
 );

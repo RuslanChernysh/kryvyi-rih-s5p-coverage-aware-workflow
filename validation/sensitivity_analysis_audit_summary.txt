@@ -24,7 +24,9 @@ NO2:
 - >=20%: 2019 = 12/12; 2024 = 11/12; diagnostic endpoint contrast = -22.2298%
 - >=25%: 2019 = 9/12; 2024 = 10/12; diagnostic endpoint contrast = -19.1697%
 - Direction and order of magnitude of the NO2 decrease remained stable across all tested scenarios.
-- Endpoint spatial support remained complete in the reported diagnostics (minimum valid area = 100%; AOI reduction sample count = 698 for both endpoint years).
+- Endpoint spatial support remained complete in the reported diagnostics (minimum valid area = 100%; Endpoint spatial support remained complete in the reported diagnostics
+(minimum valid area = 100%; standalone unweighted AOI raster-cell count =
+528 for both endpoint years).
 
 CO:
 - BASE / >=10% / >=20% / >=25% all retained 12/12 months in 2019 and 2024.

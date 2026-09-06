@@ -23,37 +23,36 @@
 
 var CONFIG = {
 
-  scriptVersion:
-    'ARTICLE4_MASTER_MONITORING_SYSTEM_V1_0_RELEASE',
+ scriptVersion:
+  'ARTICLE4_MASTER_MONITORING_SYSTEM_V1_1_1_CORRECTIVE_RELEASE',
 
-  verifiedStage1Version:
-    'ARTICLE4_MULTIPOLLUTANT_ENGINE_V4_1_STAGE1_VERIFIED_R04',
+verifiedStage1Version:
+  'ARTICLE4_MULTIPOLLUTANT_ENGINE_V4_1_STAGE1_VERIFIED_R04',
+
+verifiedEngineVersion:
+  'ARTICLE4_MULTIPOLLUTANT_ENGINE_V4_1_STAGE1_VERIFIED_R04',
+
+inputMaterializationVersion:
+  'ARTICLE4_STAGE2A_YEAR_MATERIALIZATION_R03_CORRECTIVE',
+
+stage2aVersion:
+  'ARTICLE4_STAGE2A_YEAR_MATERIALIZATION_R03_CORRECTIVE',
+
+stage2bVersion:
+  'ARTICLE4_STAGE2B_PUBLICATION_TABLES_R03_CORRECTIVE',
+
+stage2cVersion:
+  'ARTICLE4_STAGE2C_SPATIAL_PRODUCTS_ENGINE_R01_VERIFIED',
+
+stage2dVersion:
+  'ARTICLE4_STAGE2D_PUBLICATION_EXPORTS_ENGINE_R02_CORRECTIVE',
 
 
-  verifiedEngineVersion:
-    'ARTICLE4_MULTIPOLLUTANT_ENGINE_V4_1_STAGE1_VERIFIED_R04',
-
-  inputMaterializationVersion:
-    'ARTICLE4_STAGE2A_YEAR_MATERIALIZATION_R02',
-
-  stage2aVersion:
-    'ARTICLE4_STAGE2A_YEAR_MATERIALIZATION_R02',
-
-  stage2bVersion:
-    'ARTICLE4_STAGE2B_PUBLICATION_TABLES_R02_VERIFIED',
-
-  stage2cVersion:
-    'ARTICLE4_STAGE2C_SPATIAL_PRODUCTS_ENGINE_R01_VERIFIED',
-
-  stage2dVersion:
-    'ARTICLE4_STAGE2D_PUBLICATION_EXPORTS_ENGINE_R01_VERIFIED_FINAL',
-
-
-  runMode:
+runMode:
   'FINAL_PUBLICATION_EXPORT',
 
   activeYear:
-    2024,
+    2019,
 
   activePollutant:
     'CO',
@@ -112,11 +111,11 @@ aoiId:
 
 
   createYearlyTableAssetTask:
-    true,
+    false,
 
 
   createAnnualAssetTask:
-    true,
+    false,
 
   createGeoTiffTasks:
     false,
@@ -459,7 +458,7 @@ allowStrictLongTermChange:
       7000,
 
     analysisScaleDescription:
-      '7000 m dissertation-compatible AOI analysis scale; not the native Earth Engine L3 pixel size',
+      '7000 m AOI analysis scale selected for SO2 after scale-sensitivity evaluation; not the native Earth Engine L3 pixel size',
 
     footprintMetadata:
       'approximately footprint-scale S5P/TROPOMI support; Earth Engine L3 grid spacing remains 1113.2 m',
@@ -750,7 +749,7 @@ function stage2aAssetId(
     CONFIG.aoiId +
     '_' +
     String(yearValue) +
-    '_R02';
+    '_R03';
 }
 
 
@@ -3275,8 +3274,7 @@ var persistenceAllowed =
           end_year:
             CONFIG.endYear,
 
-          strict_complete_year_count:
-            strictCompleteYearCount,
+    
 
           start_year_complete:
             startComplete,
@@ -3647,12 +3645,24 @@ function createMasterAoiSummary(
   var valueImage = monthlyImage.select('pollutant_monthly_mean');
   var supportCountImage = monthlyImage.select('temporal_support_count');
 
+  // Weighted AOI value statistics are computed separately from the
+  // unweighted raster-cell count. This avoids conflating boundary-intersecting
+  // pixels admitted by weighted reducers with centroid-in-AOI cells counted by
+  // ee.Reducer.count().
   var valueStats = valueImage.reduceRegion({
     reducer: ee.Reducer.mean()
       .combine({reducer2: ee.Reducer.median(), sharedInputs: true})
       .combine({reducer2: ee.Reducer.percentile([90]), sharedInputs: true})
-      .combine({reducer2: ee.Reducer.minMax(), sharedInputs: true})
-      .combine({reducer2: ee.Reducer.count(), sharedInputs: true}),
+      .combine({reducer2: ee.Reducer.minMax(), sharedInputs: true}),
+    geometry: AOI_GEOM,
+    scale: active.analysisScaleM,
+    crs: CONFIG.reductionCrs,
+    maxPixels: CONFIG.maxPixels,
+    tileScale: CONFIG.tileScale
+  });
+
+  var valueCountStats = valueImage.reduceRegion({
+    reducer: ee.Reducer.count(),
     geometry: AOI_GEOM,
     scale: active.analysisScaleM,
     crs: CONFIG.reductionCrs,
@@ -3765,7 +3775,7 @@ function createMasterAoiSummary(
     AOI_min_mol_m2: valueStats.get('pollutant_monthly_mean_min'),
     AOI_max_mol_m2: valueStats.get('pollutant_monthly_mean_max'),
     AOI_reduction_sample_count:
-      valueStats.get('pollutant_monthly_mean_count'),
+      valueCountStats.get('pollutant_monthly_mean'),
     temporal_support_mode: active.supportMode,
     temporal_support_description: active.supportDescription,
     support_count_mean: supportStats.get('temporal_support_count_mean'),
@@ -3932,7 +3942,7 @@ function runMasterOneYearMaterialization(
     CONFIG.aoiId +
     '_' +
     String(yearValue) +
-    '_R02';
+    '_R03';
 
 
   var assetId =
@@ -4083,8 +4093,8 @@ function runMasterAllYearsMaterialization(
 function runMasterPublicationPackage(enableExports) {
 
   var PUB_CONFIG = {
-    scriptVersion:
-      'ARTICLE4_STAGE2D_PUBLICATION_EXPORTS_ENGINE_R01',
+scriptVersion:
+  CONFIG.stage2dVersion,
     inputTableStage:
       CONFIG.stage2bVersion,
     inputSpatialStage:
@@ -4151,9 +4161,9 @@ if (
   PUB_CONFIG.startYear !== 2019 ||
   PUB_CONFIG.endYear !== 2024
 ) {
-  throw new Error(
-    'Stage 2D R01 is frozen for the verified 2019–2024 publication period.'
-  );
+throw new Error(
+  'Stage 2D R02 corrective release is restricted to the verified 2019–2024 publication period.'
+);
 }
 
 
@@ -4180,7 +4190,7 @@ function yearlyAssetId(yearValue) {
     PUB_CONFIG.aoiId +
     '_' +
     String(yearValue) +
-    '_R02';
+    '_R03';
 }
 
 var ASSET_2019 = yearlyAssetId(2019);
@@ -4412,7 +4422,7 @@ var TABLE_1_METHOD_METADATA =
           7000,
 
         spatial_interpretation:
-          '7000 m dissertation-compatible AOI analysis scale; not the native Earth Engine L3 pixel size; months without valid support remain NA',
+          '7000 m AOI analysis scale; not the native Earth Engine L3 pixel size; months without valid support remain NA',
 
         study_period:
           '2019-01 through 2024-12',
@@ -6563,7 +6573,7 @@ print(
 );
 
 print(
-  '=== ARTICLE 4 — STAGE 2D FINAL ACCEPTANCE R01 ==='
+  '=== ARTICLE 4 — STAGE 2D FINAL ACCEPTANCE R02 CORRECTIVE ==='
 );
 
 print(
@@ -6722,11 +6732,11 @@ if (
     collection:
       TABLE_1_METHOD_METADATA,
     description:
-      'ARTICLE4_FINAL_TABLE1_METHOD_METADATA_2019_2024_R01',
+      'ARTICLE4_FINAL_TABLE1_METHOD_METADATA_2019_2024_R02',
     folder:
       PUB_CONFIG.tableDriveFolder,
     fileNamePrefix:
-      'ARTICLE4_FINAL_TABLE1_METHOD_METADATA_2019_2024_R01',
+      'ARTICLE4_FINAL_TABLE1_METHOD_METADATA_2019_2024_R02',
     fileFormat:
       'CSV'
   });
@@ -6735,11 +6745,11 @@ if (
     collection:
       TABLE_2_MONTHLY_AOI_STATISTICS,
     description:
-      'ARTICLE4_FINAL_TABLE2_MONTHLY_AOI_STATISTICS_2019_2024_R01',
+      'ARTICLE4_FINAL_TABLE2_MONTHLY_AOI_STATISTICS_2019_2024_R02',
     folder:
       PUB_CONFIG.tableDriveFolder,
     fileNamePrefix:
-      'ARTICLE4_FINAL_TABLE2_MONTHLY_AOI_STATISTICS_2019_2024_R01',
+      'ARTICLE4_FINAL_TABLE2_MONTHLY_AOI_STATISTICS_2019_2024_R02',
     fileFormat:
       'CSV'
   });
@@ -6748,11 +6758,11 @@ if (
     collection:
       TABLE_3_MONTHLY_QC,
     description:
-      'ARTICLE4_FINAL_TABLE3_MONTHLY_QC_2019_2024_R01',
+      'ARTICLE4_FINAL_TABLE3_MONTHLY_QC_2019_2024_R02',
     folder:
       PUB_CONFIG.tableDriveFolder,
     fileNamePrefix:
-      'ARTICLE4_FINAL_TABLE3_MONTHLY_QC_2019_2024_R01',
+      'ARTICLE4_FINAL_TABLE3_MONTHLY_QC_2019_2024_R02',
     fileFormat:
       'CSV'
   });
@@ -6761,11 +6771,11 @@ if (
     collection:
       TABLE_4_SEASONAL_ANNUAL_SUMMARY,
     description:
-      'ARTICLE4_FINAL_TABLE4_SEASONAL_ANNUAL_SUMMARY_2019_2024_R01',
+      'ARTICLE4_FINAL_TABLE4_SEASONAL_ANNUAL_SUMMARY_2019_2024_R02',
     folder:
       PUB_CONFIG.tableDriveFolder,
     fileNamePrefix:
-      'ARTICLE4_FINAL_TABLE4_SEASONAL_ANNUAL_SUMMARY_2019_2024_R01',
+      'ARTICLE4_FINAL_TABLE4_SEASONAL_ANNUAL_SUMMARY_2019_2024_R02',
     fileFormat:
       'CSV'
   });
@@ -6782,11 +6792,11 @@ if (
     collection:
       FIGURE_3_TIME_SERIES_DATA,
     description:
-      'ARTICLE4_FIG3_TIME_SERIES_DATA_2019_2024_R01',
+      'ARTICLE4_FIG3_TIME_SERIES_DATA_2019_2024_R02',
     folder:
       PUB_CONFIG.figureDataDriveFolder,
     fileNamePrefix:
-      'ARTICLE4_FIG3_TIME_SERIES_DATA_2019_2024_R01',
+      'ARTICLE4_FIG3_TIME_SERIES_DATA_2019_2024_R02',
     fileFormat:
       'CSV'
   });
@@ -6795,11 +6805,11 @@ if (
     collection:
       FIGURE_7_AVAILABILITY_DATA,
     description:
-      'ARTICLE4_FIG7_AVAILABILITY_DATA_2019_2024_R01',
+      'ARTICLE4_FIG7_AVAILABILITY_DATA_2019_2024_R02',
     folder:
       PUB_CONFIG.figureDataDriveFolder,
     fileNamePrefix:
-      'ARTICLE4_FIG7_AVAILABILITY_DATA_2019_2024_R01',
+      'ARTICLE4_FIG7_AVAILABILITY_DATA_2019_2024_R02',
     fileFormat:
       'CSV'
   });
@@ -6808,11 +6818,11 @@ if (
     collection:
       SO2_COMPLETE_SEASON_CANDIDATES,
     description:
-      'ARTICLE4_SO2_COMPLETE_SEASON_CANDIDATES_2019_2024_R01',
+      'ARTICLE4_SO2_COMPLETE_SEASON_CANDIDATES_2019_2024_R02',
     folder:
       PUB_CONFIG.figureDataDriveFolder,
     fileNamePrefix:
-      'ARTICLE4_SO2_COMPLETE_SEASON_CANDIDATES_2019_2024_R01',
+      'ARTICLE4_SO2_COMPLETE_SEASON_CANDIDATES_2019_2024_R02',
     fileFormat:
       'CSV'
   });
@@ -6822,11 +6832,11 @@ if (
     collection:
       FIGURE_6_SO2_SELECTED_SEASON_DATA,
     description:
-      'ARTICLE4_FIG6_SO2_SELECTED_SEASONS_MAM_JJA_2024_R01',
+      'ARTICLE4_FIG6_SO2_SELECTED_SEASONS_MAM_JJA_2024_R02',
     folder:
       PUB_CONFIG.figureDataDriveFolder,
     fileNamePrefix:
-      'ARTICLE4_FIG6_SO2_SELECTED_SEASONS_MAM_JJA_2024_R01',
+      'ARTICLE4_FIG6_SO2_SELECTED_SEASONS_MAM_JJA_2024_R02',
     fileFormat:
       'CSV'
   });
@@ -7047,11 +7057,11 @@ if (
     collection:
       ACCEPTANCE_MANIFEST,
     description:
-      'ARTICLE4_FINAL_ACCEPTANCE_MANIFEST_2019_2024_R01',
+      'ARTICLE4_FINAL_ACCEPTANCE_MANIFEST_2019_2024_R02',
     folder:
       PUB_CONFIG.tableDriveFolder,
     fileNamePrefix:
-      'ARTICLE4_FINAL_ACCEPTANCE_MANIFEST_2019_2024_R01',
+      'ARTICLE4_FINAL_ACCEPTANCE_MANIFEST_2019_2024_R02',
     fileFormat:
       'CSV'
   });
@@ -7060,11 +7070,11 @@ if (
     collection:
       ANNUAL_ASSET_MANIFEST,
     description:
-      'ARTICLE4_FINAL_ANNUAL_SPATIAL_ASSET_MANIFEST_2019_2024_R01',
+      'ARTICLE4_FINAL_ANNUAL_SPATIAL_ASSET_MANIFEST_2019_2024_R02',
     folder:
       PUB_CONFIG.tableDriveFolder,
     fileNamePrefix:
-      'ARTICLE4_FINAL_ANNUAL_SPATIAL_ASSET_MANIFEST_2019_2024_R01',
+      'ARTICLE4_FINAL_ANNUAL_SPATIAL_ASSET_MANIFEST_2019_2024_R02',
     fileFormat:
       'CSV'
   });
@@ -7073,11 +7083,11 @@ if (
     collection:
       LONG_TERM_SUMMARY_ALL,
     description:
-      'ARTICLE4_FINAL_LONG_TERM_SUMMARY_2019_2024_R01',
+      'ARTICLE4_FINAL_LONG_TERM_SUMMARY_2019_2024_R02',
     folder:
       PUB_CONFIG.tableDriveFolder,
     fileNamePrefix:
-      'ARTICLE4_FINAL_LONG_TERM_SUMMARY_2019_2024_R01',
+      'ARTICLE4_FINAL_LONG_TERM_SUMMARY_2019_2024_R02',
     fileFormat:
       'CSV'
   });
@@ -7086,11 +7096,11 @@ if (
     collection:
       FIGURE_MANIFEST,
     description:
-      'ARTICLE4_FINAL_FIGURE_MANIFEST_R01',
+      'ARTICLE4_FINAL_FIGURE_MANIFEST_R02',
     folder:
       PUB_CONFIG.tableDriveFolder,
     fileNamePrefix:
-      'ARTICLE4_FINAL_FIGURE_MANIFEST_R01',
+      'ARTICLE4_FINAL_FIGURE_MANIFEST_R02',
     fileFormat:
       'CSV'
   });
@@ -7099,11 +7109,11 @@ if (
     collection:
       SPATIAL_PRODUCT_MANIFEST,
     description:
-      'ARTICLE4_FINAL_SPATIAL_PRODUCT_MANIFEST_2019_2024_R01',
+      'ARTICLE4_FINAL_SPATIAL_PRODUCT_MANIFEST_2019_2024_R02',
     folder:
       PUB_CONFIG.tableDriveFolder,
     fileNamePrefix:
-      'ARTICLE4_FINAL_SPATIAL_PRODUCT_MANIFEST_2019_2024_R01',
+      'ARTICLE4_FINAL_SPATIAL_PRODUCT_MANIFEST_2019_2024_R02',
     fileFormat:
       'CSV'
   });
@@ -7113,11 +7123,11 @@ if (
     collection:
       FINAL_EXPORT_SELECTION_MANIFEST,
     description:
-      'ARTICLE4_FINAL_MAIN_TEXT_EXPORT_SELECTION_MANIFEST_R01',
+      'ARTICLE4_FINAL_MAIN_TEXT_EXPORT_SELECTION_MANIFEST_R02',
     folder:
       PUB_CONFIG.tableDriveFolder,
     fileNamePrefix:
-      'ARTICLE4_FINAL_MAIN_TEXT_EXPORT_SELECTION_MANIFEST_R01',
+      'ARTICLE4_FINAL_MAIN_TEXT_EXPORT_SELECTION_MANIFEST_R02',
     fileFormat:
       'CSV'
   });
@@ -9199,7 +9209,7 @@ Map.addLayer(
 var MASTER_OUTPUT = null;
 
 print('==================================================');
-print('ARTICLE 4 MASTER MONITORING SYSTEM V1.0 RELEASE');
+print('ARTICLE 4 MASTER MONITORING SYSTEM V1.1.1 CORRECTIVE RELEASE');
 print('Run mode:', CONFIG.runMode);
 print('Master version:', CONFIG.scriptVersion);
 print('AOI:', CONFIG.aoiId);

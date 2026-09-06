@@ -6,8 +6,7 @@
   "stage2b_version": "ARTICLE4_STAGE2B_PUBLICATION_TABLES_R03_CORRECTIVE",
   "stage2c_version": "ARTICLE4_STAGE2C_SPATIAL_PRODUCTS_ENGINE_R01_VERIFIED",
   "stage2d_version": "ARTICLE4_STAGE2D_PUBLICATION_EXPORTS_ENGINE_R02_CORRECTIVE",
-  "run_mode_at_publication_freeze": "FINAL_PUBLICATION_EXPORT"
-}
+  "run_mode_at_publication_freeze": "FINAL_PUBLICATION_EXPORT",
   "study_period": {
     "start_year": 2019,
     "end_year": 2024

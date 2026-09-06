@@ -173,7 +173,7 @@ function stage2aAssetId(
     AUDIT.aoiId +
     '_' +
     String(yearValue) +
-    '_R02';
+    '_R03';
 
 }
 

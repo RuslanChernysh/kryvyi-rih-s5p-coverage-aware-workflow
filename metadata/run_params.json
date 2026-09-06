@@ -1,12 +1,13 @@
 {
-  "release_version": "v1.1.0",
-  "master_script_version": "ARTICLE4_MASTER_MONITORING_SYSTEM_V1_0_RELEASE",
+  "release_version": "v1.1.1",
+  "master_script_version": "ARTICLE4_MASTER_MONITORING_SYSTEM_V1_1_1_CORRECTIVE_RELEASE",
   "verified_stage1_version": "ARTICLE4_MULTIPOLLUTANT_ENGINE_V4_1_STAGE1_VERIFIED_R04",
-  "stage2a_version": "ARTICLE4_STAGE2A_YEAR_MATERIALIZATION_R02",
-  "stage2b_version": "ARTICLE4_STAGE2B_PUBLICATION_TABLES_R02_VERIFIED",
+  "stage2a_version": "ARTICLE4_STAGE2A_YEAR_MATERIALIZATION_R03_CORRECTIVE",
+  "stage2b_version": "ARTICLE4_STAGE2B_PUBLICATION_TABLES_R03_CORRECTIVE",
   "stage2c_version": "ARTICLE4_STAGE2C_SPATIAL_PRODUCTS_ENGINE_R01_VERIFIED",
-  "stage2d_version": "ARTICLE4_STAGE2D_PUBLICATION_EXPORTS_ENGINE_R01_VERIFIED_FINAL",
-  "run_mode_at_publication_freeze": "FINAL_PUBLICATION_EXPORT",
+  "stage2d_version": "ARTICLE4_STAGE2D_PUBLICATION_EXPORTS_ENGINE_R02_CORRECTIVE",
+  "run_mode_at_publication_freeze": "FINAL_PUBLICATION_EXPORT"
+}
   "study_period": {
     "start_year": 2019,
     "end_year": 2024

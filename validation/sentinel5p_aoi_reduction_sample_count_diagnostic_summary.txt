@@ -1,0 +1,93 @@
+SENTINEL-5P AOI REDUCTION SAMPLE-COUNT DIAGNOSTIC — VALIDATION SUMMARY
+
+Record date: 2026-09-06
+Diagnostic script: code/sentinel5p_aoi_reduction_sample_count_diagnostic.js
+Platform: Google Earth Engine
+Status: PASS
+
+1. PURPOSE
+
+This read-only diagnostic explains why an earlier combined mean-plus-count
+reduction reported 698 while explicit count-only, mask, and pixel-centre
+reductions report 528. It tests NO2 and CO for January 2019 and compares monthly
+products with the final 2019 Stage-2C annual assets. It creates no export and
+modifies no Earth Engine asset.
+
+2. CONFIGURATION VERIFIED
+
+AOI asset: projects/ee-ruslan777chernysh/assets/KRYVYI_RIH_AOI
+AOI source feature count: 8
+AOI area: 441.4874046016281 km2
+Reduction CRS: EPSG:4326
+Analysis scale: 1113.2 m
+Test month: 2019-01
+Source collection size: 440 images for both NO2 and CO
+
+3. COUNT RESULTS
+
+Measure                                             NO2  CO
+All-source monthly count, explicit CRS + scale      528  528
+All-source monthly count, scale only                528  528
+Daily-first monthly count, explicit CRS + scale     528  528
+Daily-first monthly count, scale only               528  528
+Daily-first monthly mask count                      528  528
+Daily-first monthly pixel-centre count              528  528
+Annual Stage-2C period_mean count, CRS + scale       528  528
+Annual Stage-2C period_mean count, scale only        528  528
+Annual Stage-2C period_mean mask count               528  528
+Annual Stage-2C period_mean pixel-centre count       528  528
+AOI-only constant count, explicit CRS + scale        528  528
+Monthly-only valid cells relative to annual mask       0    0
+Annual-only valid cells relative to monthly mask       0    0
+
+4. MEAN VALUES RECORDED
+
+NO2:
+- all-source January 2019 mean: 0.00005303758466215631;
+- daily-first January 2019 mean: 0.00005012997926019082;
+- final annual 2019 mean: 0.00004552164317410306.
+
+CO:
+- all-source January 2019 mean: 0.03635885635784753;
+- daily-first January 2019 mean: 0.036357136555326415;
+- final annual 2019 mean: 0.03456639937266526.
+
+These values describe different aggregation stages and must not be expected to
+be identical.
+
+5. EXPLANATION OF 698 VERSUS 528
+
+The combined mean-plus-count dictionary returned VALUE_count = 698 for both
+pollutants, whereas every dedicated unweighted count, mask-count, pixel-centre
+count, and AOI reference count returned 528.
+
+Therefore:
+- 528 is the reproducible unweighted valid-cell count on the declared analysis
+  grid;
+- 698 is an output of the combined weighted reduction context and must not be
+  labelled or interpreted as the number of valid raster cells;
+- the AOI-only weighted sum, 532.7686274509805, is also not a cell count because
+  boundary pixels contribute fractional weights.
+
+The diagnostic valid-mask area was 442643601.2816176 m2 for both pollutants,
+while the geodesic AOI area was approximately 441487404.6016 m2. The small
+difference is consistent with raster-grid/boundary support and does not create
+additional unweighted cells.
+
+6. REQUIRED REPORTING RULE
+
+For sample-size or spatial-support metadata, calculate count separately with an
+explicit count reducer and the declared CRS and scale. Do not take the count
+field from a combined weighted mean-plus-count reduction. Weighted reducers may
+still be used for AOI mean estimation, provided that their count output is not
+reported as an unweighted pixel count.
+
+7. CONCLUSION
+
+Monthly and annual masks are spatially concordant for the tested NO2 and CO
+products: neither pollutant has cells present in only one of the two masks. The
+correct publication sample count is 528 valid AOI grid cells. The historical
+value 698 is a reducer-semantics artifact, not evidence of a larger spatial
+support or a second grid.
+
+FINAL DECISION: PASS. USE 528 FOR UNWEIGHTED VALID-CELL COUNTS.

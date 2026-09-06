@@ -1,4 +1,4 @@
-CRITICAL AUDIT DECISION SUMMARY — v1.0
+CRITICAL AUDIT DECISION SUMMARY — v1.1.1 CORRECTIVE RELEASE
 Coverage-aware Sentinel-5P workflow for atmospheric monitoring in Kryvyi Rih
 
 Purpose

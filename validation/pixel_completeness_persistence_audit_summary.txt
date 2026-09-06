@@ -11,6 +11,12 @@ The audit also verifies the persistence calculation under a strict common
 per-cell completeness mask requiring 12/12 valid monthly contributions in
 every study year.
 
+A subsequent spatial-element provenance check was used to establish the
+relationship between the cell counts produced by this audit and the spatial
+support of the final Stage-2C/Stage-2D annual, endpoint-change, and
+hotspot-persistence products.
+
+
 Study configuration
 -------------------
 Study area: Kryvyi Rih AOI
@@ -21,6 +27,7 @@ Audit CRS: EPSG:4326
 Hotspot percentile: P90
 Hotspot criterion: annual mean > annual P90 threshold
 Pollutants audited: NO2 and CO
+
 
 Hotspot-criterion harmonization
 -------------------------------
@@ -42,6 +49,7 @@ This harmonization changed the NO2 annual hotspot-cell count for 2020 from
 retained 9 hotspot cells classified as persistent in all 6 years under both
 the original-like and strict common-completeness evaluations, while CO
 retained 0 cells with 6/6 persistence.
+
 
 Verified findings — NO2
 -----------------------
@@ -88,12 +96,12 @@ Verified findings — NO2
    - Strict common-mask 6/6 hotspot cells: 9
    - Original 6/6 cells excluded by the strict 12/12 common mask: 0
 
+
 Interpretation — NO2
 --------------------
 The audit confirms that AOI-level annual availability does not imply 12/12
-monthly completeness for every individual audit cell. In 2021, 528 cells had
-an annual result, whereas 466 cells had valid contributions from all
-12 months.
+monthly completeness for every individual cell. In 2021, 528 cells had an
+annual result, whereas 466 cells had valid contributions from all 12 months.
 
 The strict common-completeness mask therefore contains 466 NO2 cells that
 satisfy the 12/12 monthly requirement in every year from 2019 through 2024.
@@ -105,6 +113,7 @@ original 6/6 cells excluded by the strict common mask was 0.
 
 Therefore, the identified NO2 6/6 persistence pattern is not an artifact of
 incomplete monthly support in the cells defining the persistent hotspot set.
+
 
 Verified findings — CO
 ----------------------
@@ -151,6 +160,7 @@ Verified findings — CO
    - Strict common-mask 6/6 hotspot cells: 0
    - Original 6/6 cells excluded by the strict 12/12 common mask: 0
 
+
 Interpretation — CO
 -------------------
 CO is fully complete at the audited cell level for all six years: all 528
@@ -161,14 +171,137 @@ The original-like and strict common-completeness persistence evaluations are
 therefore identical with respect to the 6/6 persistence result. Neither
 evaluation identifies any CO cell as a hotspot in all six years.
 
+
+Spatial-element provenance verification
+---------------------------------------
+A separate provenance diagnostic was performed after the completeness audit
+to determine whether the 528-cell count was specific to the diagnostic
+reconstruction or also represented the spatial support of the final
+publication products.
+
+The check directly inspected the archived Stage-2C annual assets for NO2 and
+CO in 2019 and 2024 and reconstructed the Stage-2D endpoint-change and
+multi-year hotspot-persistence products.
+
+For all inspected Stage-2C annual products:
+
+- period_mean contained 528 sampled cells;
+- the period_mean mask contained 528 sampled cells;
+- valid_month_count contained 528 sampled cells;
+- the annual raster bands shared the stored EPSG:4326 grid;
+- the 2019 and 2024 endpoint annual rasters therefore used the same
+  528-cell sampled spatial support at the stated reduction configuration.
+
+The reconstructed Stage-2D products independently produced:
+
+NO2:
+- 2019 period_mean cells: 528
+- 2024 period_mean cells: 528
+- absolute-change cells: 528
+- relative-change cells: 528
+- hotspot-occurrence raster cells: 528
+- persistence raster cells: 528
+- relative-change cells < 0: 528
+- relative-change cells > 0: 0
+- relative-change cells = 0: 0
+- hotspot persistence 6/6: 9 cells
+- hotspot persistence >=5/6: 31 cells
+- hotspot persistence 4/6: 7 cells
+
+CO:
+- 2019 period_mean cells: 528
+- 2024 period_mean cells: 528
+- absolute-change cells: 528
+- relative-change cells: 528
+- hotspot-occurrence raster cells: 528
+- persistence raster cells: 528
+- relative-change cells < 0: 188
+- relative-change cells > 0: 340
+- relative-change cells = 0: 0
+- hotspot persistence 6/6: 0 cells
+- hotspot persistence >=5/6: 0 cells
+- hotspot persistence 4/6: 5 cells
+
+These results establish that 528 is not merely an incidental count generated
+by the standalone completeness audit. At the stated EPSG:4326 / 1113.2 m
+reduction configuration, the same 528-cell sampled support is reproduced from
+the final Stage-2C annual assets and the derived Stage-2D endpoint-change and
+persistence products.
+
+
+Interpretation of 528 and 466
+-----------------------------
+The two cell counts have different meanings and must not be conflated.
+
+528:
+The sampled spatial support containing annual results for the audited NO2 and
+CO raster products at EPSG:4326 and 1113.2 m. The same count is reproduced
+from the final Stage-2C annual products and Stage-2D endpoint-change and
+persistence products.
+
+466:
+The subset of the 528 NO2 cells satisfying the stricter requirement of 12/12
+valid monthly contributions in every individual year from 2019 through 2024.
+
+All nine NO2 cells with 6/6 hotspot persistence are contained within this
+466-cell strict common-completeness subset.
+
+For CO, the strict common-completeness population remains 528 because all
+528 cells satisfy 12/12 monthly completeness in every study year.
+
+
+Relationship to the previously reported 698-element denominator
+-----------------------------------------------------------------
+The provenance check did not reproduce 698 as the sampled cell population of
+the final Stage-2C annual rasters or of the Stage-2D endpoint-change and
+hotspot-persistence products at EPSG:4326 and 1113.2 m.
+
+Instead, all direct checks of these products consistently returned 528 sampled
+cells.
+
+Accordingly, the previously used value of 698 must not be interpreted as the
+number of sampled raster cells underlying the verified Stage-2C/Stage-2D
+spatial statistics unless a separate, explicitly documented product or
+sampling definition can be shown to generate that denominator.
+
+Any manuscript statement or publication-supporting table that expresses a
+spatial fraction using 698 as the denominator should therefore be reviewed
+against the exact product and counting definition from which that fraction was
+derived.
+
+For the verified Stage-2C/Stage-2D sampled raster support, the relevant base
+population is 528 cells. For the NO2 strict common-completeness validation,
+the relevant restricted population is 466 cells.
+
+These denominators answer different questions and should be reported
+explicitly rather than used interchangeably.
+
+
+Projection note
+---------------
+The stored Stage-2C annual assets use EPSG:4326 with an approximately 0.01
+degree pixel transform and a fixed grid origin.
+
+Some reconstructed ImageCollection-derived persistence images report the
+generic default projection metadata EPSG:4326 with transform
+[1, 0, 0, 0, 1, 0] before an explicit reduction grid is supplied.
+
+This default composite-image projection metadata must not be interpreted as a
+one-degree scientific analysis grid. When the products are evaluated using
+the explicitly specified publication/audit reduction configuration
+(EPSG:4326; scale 1113.2 m), the reconstructed annual, endpoint-change, and
+persistence products consistently return the same 528-cell sampled support.
+
+
 Overall conclusion
 ------------------
-The audit supports the following methodological conclusions:
+The combined completeness, hotspot-criterion, and spatial-provenance checks
+support the following methodological conclusions:
 
 - AOI-level calendar completeness and per-cell monthly completeness must be
   described separately.
 
-- The audit hotspot definition is now fully harmonized with the publication
+- The audit hotspot definition is fully harmonized with the publication
   workflow and manuscript definition by using the strict criterion
   annual mean > P90.
 
@@ -176,7 +309,7 @@ The audit supports the following methodological conclusions:
   hotspot classification in 2020 (54 to 53 cells) but did not change the
   central multi-year persistence result.
 
-- For NO2, 2021 contains audit cells with 11 rather than 12 valid monthly
+- For NO2, 2021 contains cells with 11 rather than 12 valid monthly
   contributions. Consequently, 466 of the 528 cells with annual results
   satisfy the strict 12/12-per-year common-completeness requirement across
   all six study years.
@@ -185,47 +318,61 @@ The audit supports the following methodological conclusions:
   unchanged at 9 cells, and no 6/6 hotspot cell is excluded by the stricter
   completeness criterion.
 
-- For CO, all 528 audit cells satisfy 12/12 completeness in all six years,
-  and no 6/6 persistent hotspot is identified under either persistence
-  evaluation.
+- For CO, all 528 cells satisfy 12/12 completeness in all six years, and no
+  6/6 persistent hotspot is identified.
 
-- No recalculation of the reported NO2 6/6 or CO 6/6 persistence result is
-  required on the basis of the hotspot-criterion harmonization or the strict
-  common-completeness audit.
+- Direct inspection of the final Stage-2C annual assets and reconstruction of
+  Stage-2D endpoint-change and persistence products independently reproduce
+  the 528-cell sampled spatial support.
 
-- The Master scientific workflow, source assets, and previously generated
-  publication outputs were not modified by this validation audit.
+- The previously used 698-element denominator is not reproduced as the
+  sampled cell population of these verified Stage-2C/Stage-2D products and
+  therefore requires correction or a separate explicit provenance if it is
+  retained anywhere in publication materials.
 
-Spatial-count scope note
-------------------------
-The values 528 and 466 reported in this file are counts produced by the
-pixel-completeness audit at its stated reduction configuration
-(EPSG:4326; scale 1113.2 m).
+- No recalculation of the identity or count of the reported NO2 6/6
+  persistent-hotspot set is required: the result remains 9 cells.
 
-They should not, at this stage, be assumed to be numerically identical to
-spatial-element counts reported for separately generated publication spatial
-products. The relationship between the audit counts (528 and 466) and the
-698-element denominator used for publication spatial fractions is subject to
-a separate grid/reduction provenance check.
+- No recalculation of the CO 6/6 persistence result is required: the result
+  remains 0 cells.
 
-Accordingly, this audit establishes the effect of strict per-cell
-completeness on the persistent-hotspot set, but it does not by itself redefine
-the denominator used for spatial fractions in the publication products.
+- The Master scientific workflow and source assets were not modified by these
+  validation diagnostics.
+
 
 Recommended use in manuscript
 -----------------------------
 The manuscript should explicitly distinguish:
-(1) AOI-level presence of expected monthly products, and
-(2) per-cell completeness based on the number of valid monthly contributions.
 
-For multi-year persistence interpretation, the strict common-mask validation
-can be cited as evidence that all nine reported NO2 6/6 persistent-hotspot
-cells are retained under a 12/12-per-year completeness requirement across all
-six study years.
+(1) AOI-level presence of expected monthly products;
 
-The audit should not be used, without the separate spatial-grid provenance
-check, to reinterpret the publication spatial-fraction denominator solely
-from the 528- or 466-cell audit counts.
+(2) per-cell monthly completeness;
+
+(3) the 528-cell sampled support of the verified Stage-2C/Stage-2D spatial
+    products at the stated reduction configuration; and
+
+(4) the 466-cell strict common-completeness subset used to test robustness of
+    the NO2 multi-year persistence result.
+
+The nine NO2 cells classified as hotspots in all six years are retained under
+the strict common-completeness requirement.
+
+If the persistent-hotspot result is expressed as a fraction of the verified
+528-cell Stage-2C/Stage-2D sampled spatial support, the corresponding fraction
+is 9/528 (approximately 1.70%).
+
+If the same nine cells are described specifically relative to the strict
+common-completeness subset, the corresponding fraction is 9/466
+(approximately 1.93%).
+
+These percentages refer to different denominators and must be labelled
+accordingly.
+
+The previously reported 9/698 (1.29%) fraction should not be retained as a
+fraction of the verified Stage-2C/Stage-2D raster-cell population unless an
+independent and explicitly documented provenance for the 698-element
+population is established.
+
 
 Recommended repository location
 -------------------------------

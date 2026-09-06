@@ -1,0 +1,108 @@
+SENTINEL-5P SPATIAL-SUPPORT PROVENANCE AUDIT — VALIDATION SUMMARY
+
+Record date: 2026-09-06
+Audit script: code/sentinel5p_spatial_support_provenance_audit.js
+Platform: Google Earth Engine
+Status: PASS WITH DOCUMENTED PROJECTION NOTE
+
+1. PURPOSE
+
+This read-only audit verifies the spatial support of the final Stage-2C annual,
+endpoint-change, and hotspot-persistence products for NO2 and CO. It does not
+export data, modify Earth Engine assets, or rerun Sentinel-5P preprocessing.
+
+2. CONFIGURATION VERIFIED
+
+AOI ID: AOI_KRYVYI_RIH
+AOI area: 441.4874046016281 km2
+Reduction CRS: EPSG:4326
+Analysis scale: 1113.2 m
+Endpoint years: 2019 and 2024
+Expected months per annual product: 12
+
+3. ANNUAL-ASSET RESULTS
+
+Pollutant  Year  period_mean  mask  valid_month_count  strict_12_of_12  hotspot_p90
+NO2        2019  528          528   528                528              528
+NO2        2024  528          528   528                528              528
+CO         2019  528          528   528                528              528
+CO         2024  528          528   528                528              528
+
+For all four endpoint assets:
+- strict_period_complete = 1;
+- valid_month_count_aoi = 12;
+- expected_month_count = 12;
+- hotspot_publication_eligible = 1;
+- annual period_mean, valid_month_count, and hotspot_p90 use the same stored
+  EPSG:4326 grid transform:
+  [0.010000045742818514, 0, 33.14015159170056,
+   0, -0.010000045742818514, 48.20022048038524].
+
+4. LONG-TERM RESULTS
+
+NO2:
+- 2019 period_mean support: 528 cells;
+- 2024 period_mean support: 528 cells;
+- absolute-change support: 528 cells;
+- relative-change support: 528 cells;
+- negative relative-change cells: 528;
+- positive relative-change cells: 0;
+- zero relative-change cells: 0;
+- hotspot-occurrence support: 528 cells;
+- persistence support: 528 cells;
+- hotspot occurrence 6/6: 9 cells;
+- hotspot occurrence >=5/6: 31 cells;
+- hotspot occurrence 4/6: 7 cells.
+
+CO:
+- 2019 period_mean support: 528 cells;
+- 2024 period_mean support: 528 cells;
+- absolute-change support: 528 cells;
+- relative-change support: 528 cells;
+- negative relative-change cells: 188;
+- positive relative-change cells: 340;
+- zero relative-change cells: 0;
+- hotspot-occurrence support: 528 cells;
+- persistence support: 528 cells;
+- hotspot occurrence 6/6: 0 cells;
+- hotspot occurrence >=5/6: 0 cells;
+- hotspot occurrence 4/6: 5 cells.
+
+The reported sign-class counts equal the full 528-cell relative-change support
+for both pollutants (NO2: 528 + 0 + 0; CO: 188 + 340 + 0).
+
+5. INTERPRETATION
+
+The endpoint annual rasters, endpoint-change rasters, and reconstructed
+hotspot-persistence rasters cover the same 528 AOI grid cells when reduced with
+the declared CRS and scale. The endpoint annual assets are strictly complete
+(12/12 months) and publication-eligible for NO2 and CO.
+
+The audit supports using 528 as the unweighted valid-cell count for these
+products. It does not support interpreting 698, or any fractional weighted
+sum, as a raster-cell count.
+
+6. PROJECTION NOTE
+
+The stored annual and absolute-change rasters report the declared EPSG:4326
+grid. The reconstructed in-memory persistence images report Earth Engine's
+default projection [1, 0, 0, 0, 1, 0]. This is a metadata/projection-state
+difference, not a detected support difference: all audit reductions explicitly
+set EPSG:4326 and 1113.2 m and return 528 cells.
+
+For any future persistence export, the export call must explicitly specify the
+publication CRS and scale (or an exact crsTransform) so that the stored raster
+grid is deterministic. This audit alone does not prove that an independently
+exported persistence GeoTIFF inherited the annual raster transform.
+
+7. SCOPE LIMITS
+
+This audit validates spatial support, completeness properties, sign counts,
+and selected hotspot-occurrence counts. It does not independently validate the
+scientific interpretation of causality, surface concentrations, emissions, or
+regulatory compliance. The complete NO2 occurrence histogram was not expanded
+in the supplied Console record; therefore no additional NO2 class counts are
+asserted here.
+
+FINAL DECISION: PASS WITH DOCUMENTED PROJECTION NOTE.
+

@@ -36,8 +36,8 @@ var AUDIT = {
   assetFolder:
     'projects/ee-ruslan777chernysh/assets',
 
-  stage2aSuffix:
-    '_R02',
+ stage2aSuffix:
+  '_R03',
 
   no2CoThresholds: [
     {

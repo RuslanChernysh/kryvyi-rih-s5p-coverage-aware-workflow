@@ -4,7 +4,14 @@
 
 This checklist documents the pre-release quality-control status of the current publication-supporting reproducibility package for the Kryvyi Rih Sentinel-5P study.
 
-The initial archived software release is `v1.0.0` (2026-08-23):
+Initial archived release:
+v1.0.0 — 10.5281/zenodo.22071247
+
+Current archived release:
+v1.1.0 — 10.5281/zenodo.22533826
+
+Corrective release under preparation:
+v1.1.1
 
 https://doi.org/10.5281/zenodo.22071247
 

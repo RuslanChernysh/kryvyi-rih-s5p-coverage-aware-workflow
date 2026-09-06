@@ -143,8 +143,8 @@ function buildAnnualAudit(pollutantKey, year) {
 
   var p90Threshold = ee.Number(p90Dictionary.get(p90Keys.get(0)));
 
-  var hotspot = annualMean.gte(p90Threshold).rename('hotspot').toByte()
-    .updateMask(annualMean.mask());
+  var hotspot = annualMean.gt(p90Threshold).rename('hotspot').toByte()
+  .updateMask(annualMean.mask());
 
   return {
     validMonthCount: validMonthCount,

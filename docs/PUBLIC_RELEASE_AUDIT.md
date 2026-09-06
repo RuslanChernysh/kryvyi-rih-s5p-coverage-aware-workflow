@@ -4,7 +4,10 @@
 
 This document records the public-release and reproducibility considerations for the Kryvyi Rih Sentinel-5P scientific workflow and its associated publication-supporting package.
 
-The initial archived software release was `v1.0.0`.
+v1.0.0 — initial archived release
+v1.1.0 — expanded reproducibility release
+v1.1.1 — corrective release resolving AOI sample-count provenance,
+          refreshed R02 outputs, and expanded validation documentation
 
 The current repository `main` branch has subsequently been expanded with independent audit scripts, validation summaries, machine-readable tabular outputs, publication manifests, figure-supporting data, and selected scientific GeoTIFF products.
 

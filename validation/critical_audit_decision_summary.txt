@@ -17,11 +17,11 @@ Release context
 Initial archived release:
 v1.0.0 — 10.5281/zenodo.22071247
 
-Latest archived release:
+Preceding archived release:
 v1.1.0 — 10.5281/zenodo.22533826
 
-Corrective release under preparation:
-v1.1.1 — DOI not yet assigned
+Current archived corrective release:
+v1.1.1 — 10.5281/zenodo.22534101
 
 Version relationships
 ---------------------
@@ -194,8 +194,11 @@ Required manuscript actions
 
 Archival note
 -------------
-This document records validation and corrective-release decisions made after archived release v1.1.0. The evidence is incorporated into release candidate v1.1.1.
+This document records the validation and corrective-release decisions incorporated into software release v1.1.1.
 
-Until GitHub release v1.1.1 and its corresponding Zenodo record are published, v1.1.0 remains the latest archived version and DOI 10.5281/zenodo.22533826 remains its version-specific DOI.
+GitHub release v1.1.1 and its corresponding Zenodo record were successfully published.
 
-The v1.1.1 DOI must not be invented or assigned in advance. After archival, the repository citation metadata and manuscript Data and Code Availability statement must be updated using the verified new DOI.
+Version-specific DOI:
+10.5281/zenodo.22534101
+
+Release v1.1.1 is the current archived corrective reproducibility package.

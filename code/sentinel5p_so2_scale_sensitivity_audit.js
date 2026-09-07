@@ -396,16 +396,14 @@ function scaleStats(
     );
 
 
-  var mamStats =
+  // Keep area-weighted AOI means separate from the unweighted
+  // count of sampled raster cells. A combined mean + count reducer
+  // can expose the weighted reducer's count semantics and must not
+  // be interpreted as an unweighted cell count.
+  var mamMeanStats =
     MAM.image.reduceRegion({
       reducer:
-        ee.Reducer.mean()
-          .combine({
-            reducer2:
-              ee.Reducer.count(),
-            sharedInputs:
-              true
-          }),
+        ee.Reducer.mean(),
 
       geometry:
         AOI,
@@ -424,16 +422,54 @@ function scaleStats(
     });
 
 
-  var jjaStats =
+  var mamCountStats =
+    MAM.image.reduceRegion({
+      reducer:
+        ee.Reducer.count(),
+
+      geometry:
+        AOI,
+
+      scale:
+        scaleValue,
+
+      crs:
+        AUDIT.reductionCrs,
+
+      maxPixels:
+        AUDIT.maxPixels,
+
+      tileScale:
+        AUDIT.tileScale
+    });
+
+
+  var jjaMeanStats =
     JJA.image.reduceRegion({
       reducer:
-        ee.Reducer.mean()
-          .combine({
-            reducer2:
-              ee.Reducer.count(),
-            sharedInputs:
-              true
-          }),
+        ee.Reducer.mean(),
+
+      geometry:
+        AOI,
+
+      scale:
+        scaleValue,
+
+      crs:
+        AUDIT.reductionCrs,
+
+      maxPixels:
+        AUDIT.maxPixels,
+
+      tileScale:
+        AUDIT.tileScale
+    });
+
+
+  var jjaCountStats =
+    JJA.image.reduceRegion({
+      reducer:
+        ee.Reducer.count(),
 
       geometry:
         AOI,
@@ -454,29 +490,29 @@ function scaleStats(
 
   var mamMean =
     ee.Number(
-      mamStats.get(
-        'period_mean_mean'
+      mamMeanStats.get(
+        'period_mean'
       )
     );
 
   var jjaMean =
     ee.Number(
-      jjaStats.get(
-        'period_mean_mean'
+      jjaMeanStats.get(
+        'period_mean'
       )
     );
 
   var mamCellCount =
     ee.Number(
-      mamStats.get(
-        'period_mean_count'
+      mamCountStats.get(
+        'period_mean'
       )
     );
 
   var jjaCellCount =
     ee.Number(
-      jjaStats.get(
-        'period_mean_count'
+      jjaCountStats.get(
+        'period_mean'
       )
     );
 

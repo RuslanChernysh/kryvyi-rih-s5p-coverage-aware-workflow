@@ -21,7 +21,7 @@ The files in this directory document independent checks performed without modify
 - `so2_scale_sensitivity_audit_summary.txt`  
   Summary of the SO2 AOI zonal-reduction scale sensitivity audit across the tested spatial scales. The audit evaluates numerical stability without changing the native Sentinel-5P L3 raster support or the Master workflow.
 
-  - `sentinel5p_spatial_support_provenance_audit_summary.txt`  
+- `sentinel5p_spatial_support_provenance_audit_summary.txt`
   Summary of the endpoint annual, change, and hotspot-persistence spatial-support provenance audit for NO2 and CO, including the verified 528-cell support and the documented persistence-projection note.
 
 - `sentinel5p_aoi_reduction_sample_count_diagnostic_summary.txt`  

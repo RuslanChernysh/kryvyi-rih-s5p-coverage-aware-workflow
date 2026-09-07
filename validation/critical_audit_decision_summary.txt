@@ -3,29 +3,83 @@ Coverage-aware Sentinel-5P workflow for atmospheric monitoring in Kryvyi Rih
 
 Purpose
 -------
-This decision record consolidates the outcomes of two post-release critical audits:
-1. Pixel completeness + persistence audit.
+This decision record consolidates the completed critical and supporting audits used to prepare corrective software release v1.1.1:
+
+1. Pixel completeness and hotspot-persistence audit.
 2. SO2 missing-month root-cause audit.
+3. Temporal-support sensitivity analysis.
+4. SO2 AOI reduction-scale sensitivity audit.
+5. AOI reduction sample-count diagnostic.
+6. Annual, endpoint-change, and persistence spatial-support provenance audit.
+
+Release context
+---------------
+Initial archived release:
+v1.0.0 — 10.5281/zenodo.22071247
+
+Latest archived release:
+v1.1.0 — 10.5281/zenodo.22533826
+
+Corrective release under preparation:
+v1.1.1 — DOI not yet assigned
+
+Version relationships
+---------------------
+Master:
+ARTICLE4_MASTER_MONITORING_SYSTEM_V1_1_1_CORRECTIVE_RELEASE
+
+Verified Stage-1 engine:
+ARTICLE4_MULTIPOLLUTANT_ENGINE_V4_1_STAGE1_VERIFIED_R04
+
+Stage-2A monthly AOI materializations:
+ARTICLE4_STAGE2A_YEAR_MATERIALIZATION_R03_CORRECTIVE
+
+Stage-2B publication tables:
+ARTICLE4_STAGE2B_PUBLICATION_TABLES_R03_CORRECTIVE
+
+Verified Stage-2C scientific spatial assets:
+ARTICLE4_STAGE2C_SPATIAL_PRODUCTS_ENGINE_R01_VERIFIED
+
+Final Stage-2D publication exports:
+ARTICLE4_STAGE2D_PUBLICATION_EXPORTS_ENGINE_R02_CORRECTIVE
 
 Decision table
 --------------
-Pixel completeness
+Pixel completeness:
 Passed: YES
-Needs manuscript text change: YES
-Needs scientific code change: NO
-Needs result recalculation: NO
+Scientific interpretation change required: CLARIFICATION
+Publication-output refresh required: YES, as part of R02 corrective packaging
 
-Persistence mask
+Persistence mask:
 Passed: YES
-Needs manuscript text change: YES
-Needs scientific code change: NO
-Needs result recalculation: NO
+Scientific conclusion changed: NO
+Exact-grid export correction required: YES
 
-SO2 missing months
+SO2 missing months:
 Passed: YES
-Needs manuscript text change: YES
-Needs scientific code change: NO
-Needs result recalculation: NO
+Scientific conclusion changed: NO
+Missing-value clarification required: YES
+
+Temporal-support sensitivity:
+Passed: YES
+Master acceptance rules changed: NO
+Diagnostic interpretation required: YES
+
+SO2 scale sensitivity:
+Passed: YES
+Optimal scale identified: NO
+Wording clarification required: YES
+
+AOI sample-count provenance:
+Passed: YES
+Verified standalone raster-cell count: 528
+Historical value 698 valid as standalone cell count: NO
+Publication table refresh required: YES
+
+Spatial-support provenance:
+Passed: YES
+Annual/change/persistence support verified: YES
+Scientific conclusion changed: NO
 
 Audit 1 — Pixel completeness and persistence
 --------------------------------------------
@@ -45,43 +99,103 @@ CO:
 - Original 6/6 hotspot cells excluded by the strict 12/12 common mask: 0.
 
 Decision from Audit 1:
-The strict common 12/12 completeness check did not remove any NO2 cell classified as a persistent 6/6 hotspot and did not alter the absence of CO 6/6 persistent hotspots. Result recalculation is not required on the basis of this audit. The manuscript should distinguish AOI/period-level completeness from per-cell monthly completeness and report the strict-mask verification.
+The strict common 12/12 completeness check did not remove any NO2 cell classified as a persistent 6/6 hotspot and did not alter the absence of CO 6/6 persistent hotspots. The manuscript must distinguish AOI/period-level completeness from per-cell monthly completeness and report the strict-mask verification.
 
 Audit 2 — SO2 missing-month root cause
 --------------------------------------
-- Exactly 72 monthly periods were audited for 2019-2024.
+- Exactly 72 monthly periods were audited for 2019–2024.
 - Source records in COPERNICUS/S5P/OFFL/L3_SO2 were present for all 72 months.
 - Eighteen affected months were identified: January, November, and December in every year from 2019 through 2024.
 - For all 18 affected months, source records remained present after date filtering, AOI filtering, and Master-equivalent preparation.
-- For all 18 affected months, the Master-equivalent native Sentinel-5P L3 mask yielded zero valid pixels within the Kryvyi Rih AOI.
-- Consequently, AOI mean and temporal-support statistics were null/undefined.
-- Corresponding Stage2A rows existed for all 18 affected months.
-- No case was found in which a valid recomputed monthly AOI result was absent from Stage2A.
-- Final first-failure classification:
-  * 18/72 months: NO_VALID_AOI_PIXELS_AFTER_NATIVE_L3_MASK
-  * 54/72 months: SOURCE_COMPOSITE_AND_STAGE2A_ROW_PRESENT
+- For all 18 affected months, the native Earth Engine L3 mask yielded zero valid pixels within the Kryvyi Rih AOI.
+- Consequently, AOI mean and temporal-support statistics were null or undefined.
+- Corresponding Stage-2A rows existed for all 18 affected months.
+- No valid recomputed monthly AOI result was found to be absent from Stage-2A.
+- Final classification: 18/72 months had NO_VALID_AOI_PIXELS_AFTER_NATIVE_L3_MASK; 54/72 months had SOURCE_COMPOSITE_AND_STAGE2A_ROW_PRESENT.
 
 Decision from Audit 2:
-The recurrent SO2 missing months were not caused by absent source collection records, skipped Stage2A materialization, or downstream aggregation failure. Their first verified failure point was zero valid AOI coverage after the native L3 masking used by the Master-equivalent SO2 branch. The 54/72 valid-month result therefore does not require recalculation on the basis of this audit.
+The recurrent missing SO2 months were not caused by absent source collection records, skipped Stage-2A materialization, or downstream aggregation failure. Their first verified failure point was zero valid AOI coverage after native L3 masking. The 54/72 valid-month result is retained. Missing periods must remain NA/null and must not be interpreted as zero.
 
-Final Stage 3 decision
-----------------------
-STAGE 3 STATUS: PASSED / CLOSED
+Audit 3 — Temporal-support sensitivity
+--------------------------------------
+- Expected Stage-2A row count: 216.
+- Actual Stage-2A row count: 216.
+- Duplicate pollutant-month key count: 0.
+- Threshold scenarios were diagnostic only and did not replace the Master acceptance rules.
+- NO2 and CO endpoint sensitivity results were evaluated for 2019 and 2024.
+- SO2 seasonal sensitivity was evaluated using valid orbital-month support.
 
-Scientific processing-code correction required: NO
-Publication-result recalculation required: NO
+Decision from Audit 3:
+Sensitivity scenarios document how stricter support thresholds affect eligible months and summary values. They do not authorize retrospective replacement of the Master rules or selective reporting of a preferred threshold.
+
+Audit 4 — SO2 AOI reduction-scale sensitivity
+---------------------------------------------
+Tested scales:
+- 1113.2 m
+- 3500 m
+- 5500 m
+- 7000 m
+
+Across all tested scales, the qualitative 2024 seasonal relationship remained MAM > JJA. The MAM/JJA ratio remained within the same broad interpretation despite expected numerical variation in zonal means and sampled-cell counts.
+
+Decision from Audit 4:
+The predefined 7000 m SO2 AOI reduction scale is supported by a numerical-stability assessment but was not selected as an empirically optimal scale. It is not the native Sentinel-5P spatial resolution. The scale audit is diagnostic and does not alter the native Earth Engine L3 raster support.
+
+Audit 5 — AOI reduction sample-count provenance
+-----------------------------------------------
+- AOI-only constant count using the verified CRS and scale: 528.
+- Monthly and annual unweighted raster-cell counts using separate count reductions: 528.
+- The historical combined mean-and-count dictionary returned VALUE_count = 698.
+- Monthly and annual scientific masks showed no spatial-support discrepancy in the tested endpoint examples.
+
+Decision from Audit 5:
+The verified standalone unweighted raster-cell count is 528. The value 698 is reducer-output provenance from a combined reduction and must not be reported as the number of valid raster cells. Publication tables and explanatory documentation must use the corrected interpretation.
+
+Audit 6 — Spatial-support provenance
+------------------------------------
+- NO2 and CO annual endpoint period_mean counts were 528.
+- Endpoint absolute-change and relative-change counts were 528.
+- Hotspot-occurrence and persistence counts were 528.
+- NO2 persistent hotspot counts were 9 cells for 6/6 years and 31 cells for at least 5/6 years.
+- CO persistent hotspot counts were 0 cells for 6/6 years and 0 cells for at least 5/6 years; 5 cells were classified as 4/6.
+- Final persistence exports use the exact verified raster-grid CRS and affine transform.
+
+Decision from Audit 6:
+Annual, endpoint-change, and persistence products have consistent verified spatial support for the reported analyses. The exact-grid Stage-2D R02 export correction strengthens output provenance without changing the scientific conclusions.
+
+Final decision
+--------------
+AUDIT STATUS: PASSED / CLOSED
+
+Core scientific processing architecture retained: YES
+Stage-2A corrective materialization: R03
+Stage-2B corrective publication tables: R03
+Verified Stage-2C scientific assets retained: R01
+Stage-2D corrective publication exports: R02
+Scientific conclusions changed by the audits: NO
+Publication-output provenance correction required: YES
+Publication outputs refreshed for v1.1.1: YES
 Manuscript clarification required: YES
-Validation/reproducibility documentation update required: YES
+Validation and reproducibility documentation update required: YES
 
 Required manuscript actions
 ---------------------------
-1. Methods: distinguish AOI/period-level completeness from per-cell monthly completeness.
-2. Methods / QA-QC: state that a strict common 12/12 per-cell completeness audit was performed for persistence.
-3. Results: report that the nine NO2 6/6 persistent hotspot cells were retained under the strict common-completeness mask; CO remained at zero 6/6 persistent hotspot cells.
-4. Methods / Results for SO2: document the root-cause audit and state that the 18 recurrent missing monthly AOI results had source records but zero valid AOI pixels after native L3 masking.
-5. Interpretation: preserve NA/null semantics; unavailable observations must not be interpreted as zero concentration.
-6. Reproducibility: retain the underlying audit scripts/results and this decision record in the validation package.
+1. Distinguish AOI/period-level completeness from per-cell monthly completeness.
+2. State that a strict common 12/12 per-cell completeness audit was performed for persistence.
+3. Report that all nine NO2 6/6 persistent-hotspot cells were retained under the strict common-completeness mask and that CO remained at zero 6/6 cells.
+4. Report that the 18 recurrent missing SO2 monthly AOI results had source records but zero valid AOI pixels after native L3 masking.
+5. Preserve NA/null semantics; unavailable observations must not be interpreted as zero pollutant values.
+6. Describe the 7000 m SO2 scale as predefined and sensitivity-evaluated, not as optimal or native spatial resolution.
+7. Report 528 as the verified standalone unweighted AOI raster-cell count where that count is methodologically relevant.
+8. Do not report 698 as the number of valid raster cells.
+9. Distinguish numerical scientific GeoTIFFs from publication-rendered RGB products.
+10. Avoid interpreting Sentinel-5P vertical-column quantities as regulatory ground-level concentrations.
+11. Retain the audit scripts, summaries, metadata, and decision record in the archived reproducibility package.
 
-Versioning note
----------------
-This document records post-release validation work. It does not modify the archived v1.0.0 scientific snapshot. The validation evidence and associated documentation can be included in a subsequent repository release after all planned audits and manuscript revisions are completed.
+Archival note
+-------------
+This document records validation and corrective-release decisions made after archived release v1.1.0. The evidence is incorporated into release candidate v1.1.1.
+
+Until GitHub release v1.1.1 and its corresponding Zenodo record are published, v1.1.0 remains the latest archived version and DOI 10.5281/zenodo.22533826 remains its version-specific DOI.
+
+The v1.1.1 DOI must not be invented or assigned in advance. After archival, the repository citation metadata and manuscript Data and Code Availability statement must be updated using the verified new DOI.

@@ -8,7 +8,7 @@ Release history:
 
 - `v1.0.0` — initial archived release, DOI `10.5281/zenodo.22071247`;
 - `v1.1.0` — expanded reproducibility release, DOI `10.5281/zenodo.22533826`;
-- `v1.1.1` — corrective release under preparation; DOI not yet assigned.
+- `v1.1.1` — corrective reproducibility release, DOI `10.5281/zenodo.22534101`.
 
 Release candidate `v1.1.1` corrects AOI sample-count provenance, refreshes the publication outputs, expands validation documentation, and clarifies scientific raster export provenance.
 
@@ -178,4 +178,10 @@ After Zenodo publishes the `v1.1.1` record:
 
 ## Current status
 
-The scientific Master, audit scripts, validation records, metadata, and repository documentation are assembled. The package remains in **pre-release preparation status** until the final `R02` and RGB files are validated and uploaded, checksums are regenerated and verified, and the GitHub/Zenodo release process is completed.
+The scientific Master, audit scripts, validation records, metadata, publication-supporting tables, scientific GeoTIFFs, publication-rendered RGB products, and repository documentation were archived in GitHub release `v1.1.1`.
+
+The corresponding Zenodo record was published successfully:
+
+https://doi.org/10.5281/zenodo.22534101
+
+Release `v1.1.1` is the current archived corrective reproducibility package.

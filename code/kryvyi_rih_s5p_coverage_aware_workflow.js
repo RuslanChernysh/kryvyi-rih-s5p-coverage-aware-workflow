@@ -458,7 +458,7 @@ allowStrictLongTermChange:
       7000,
 
     analysisScaleDescription:
-      '7000 m AOI analysis scale selected for SO2 after scale-sensitivity evaluation; not the native Earth Engine L3 pixel size',
+      'Predefined 7000 m SO2 AOI reduction scale evaluated by scale-sensitivity analysis; not selected as an optimal scale and not the native Earth Engine L3 pixel size',
 
     footprintMetadata:
       'approximately footprint-scale S5P/TROPOMI support; Earth Engine L3 grid spacing remains 1113.2 m',
@@ -2720,7 +2720,7 @@ print(
           CONFIG.aoiId +
           '_' +
           String(yearValue) +
-          '_R01';
+          '_R02';
 
 
         Export.image.toDrive({
@@ -2786,7 +2786,7 @@ print(
       CONFIG.aoiId +
       '_' +
       String(yearValue) +
-      '_R01';
+      '_R02';
 
 
     Export.table.toDrive({
@@ -3495,7 +3495,7 @@ hotspot_persistence_publication_eligible:
       pollutantKey +
       '_' +
       CONFIG.aoiId +
-      '_2019_2024_R01';
+      '_2019_2024_R02';
 
 
     Export.image.toDrive({
@@ -3539,7 +3539,7 @@ hotspot_persistence_publication_eligible:
       pollutantKey +
       '_' +
       CONFIG.aoiId +
-      '_2019_2024_R01';
+      '_2019_2024_R02';
 
 
     Export.image.toDrive({
@@ -3588,7 +3588,7 @@ hotspot_persistence_publication_eligible:
       pollutantKey +
       '_' +
       CONFIG.aoiId +
-      '_2019_2024_R01';
+      '_2019_2024_R02';
 
 
     Export.table.toDrive({
@@ -6916,7 +6916,7 @@ if (
             pollutantKey,
             yearValue,
             PUB_CONFIG.spatialDriveFolder,
-            'R01'
+            'R02'
           );
         }
       );
@@ -6937,7 +6937,7 @@ if (
         'SO2',
         so2Year,
         PUB_CONFIG.supplementDriveFolder,
-        'DIAGNOSTIC_R01'
+        'DIAGNOSTIC_R02'
       );
     }
   }
@@ -6949,10 +6949,9 @@ if (
 function createLongTermGeoTiffTasksForPollutant(
   pollutantKey,
   productObject
-) {
+) 
+{
 
-  var spatial =
-    SPATIAL_CATALOG[pollutantKey];
   var annualReferenceImage =
     loadAnnualAsset(
       pollutantKey,
@@ -6963,33 +6962,42 @@ function createLongTermGeoTiffTasksForPollutant(
     getExactExportGrid(
       annualReferenceImage
     );
+
   var changeName =
     'ARTICLE4_FINAL_CHANGE_' +
     pollutantKey +
     '_' +
     PUB_CONFIG.aoiId +
-    '_2019_2024_R01';
+    '_2019_2024_R02';
 
   Export.image.toDrive({
     image:
       productObject.changeImage,
+
     description:
       changeName,
+
     folder:
       PUB_CONFIG.spatialDriveFolder,
+
     fileNamePrefix:
       changeName,
+
     region:
       AOI_GEOM,
-     crs:
+
+    crs:
       exactGrid.crs,
 
     crsTransform:
       exactGrid.crsTransform,
+
     maxPixels:
       PUB_CONFIG.maxPixels,
+
     fileFormat:
       'GeoTIFF',
+
     formatOptions: {
       cloudOptimized:
         true
@@ -7001,27 +7009,36 @@ function createLongTermGeoTiffTasksForPollutant(
     pollutantKey +
     '_' +
     PUB_CONFIG.aoiId +
-    '_2019_2024_R01';
+    '_2019_2024_R02';
 
   Export.image.toDrive({
     image:
       productObject.hotspotPersistence,
+
     description:
       persistenceName,
+
     folder:
       PUB_CONFIG.spatialDriveFolder,
+
     fileNamePrefix:
       persistenceName,
+
     region:
       AOI_GEOM,
-    scale:
-      spatial.l3GridSpacingM,
+
     crs:
-      PUB_CONFIG.reductionCrs,
+      exactGrid.crs,
+
+    crsTransform:
+      exactGrid.crsTransform,
+
     maxPixels:
       PUB_CONFIG.maxPixels,
+
     fileFormat:
       'GeoTIFF',
+
     formatOptions: {
       cloudOptimized:
         true
@@ -7387,19 +7404,19 @@ print(
 
   if (enableExports && CONFIG.includeSelectedSo2SeasonGeoTiffs) {
 
-    var so2MamExportName =
-      'ARTICLE4_FINAL_SO2_MAM_' +
-      CONFIG.aoiId +
-      '_' +
-      String(seasonYear) +
-      '_R01';
+var so2MamExportName =
+  'ARTICLE4_FINAL_SO2_MAM_' +
+  CONFIG.aoiId +
+  '_' +
+  String(seasonYear) +
+  '_R02';
 
-    var so2JjaExportName =
-      'ARTICLE4_FINAL_SO2_JJA_' +
-      CONFIG.aoiId +
-      '_' +
-      String(seasonYear) +
-      '_R01';
+var so2JjaExportName =
+  'ARTICLE4_FINAL_SO2_JJA_' +
+  CONFIG.aoiId +
+  '_' +
+  String(seasonYear) +
+  '_R02';
 
     Export.image.toDrive({
       image: mamImage,
@@ -8472,7 +8489,7 @@ var exportName =
       ? '2019_2024'
       : String(bundle.year)
   ) +
-  '_R01';
+  '_R02';
 
 
   Export.image.toDrive({

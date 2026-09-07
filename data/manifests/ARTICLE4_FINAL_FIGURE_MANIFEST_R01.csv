@@ -1,8 +1,0 @@
-system:index,figure_id,publication_role,source,stage2d_product,status,title,.geo
-0,FIG_1,MAIN_TEXT,QGIS/GEE AOI + contextual layers,NONE_EXTERNAL_CARTOGRAPHY,TO_FORMAT_IN_STAGE3,Study area and spatial context,"{""type"":""MultiPoint"",""coordinates"":[]}"
-1,FIG_2,MAIN_TEXT,Methodological diagram,NONE_EXTERNAL_DIAGRAM,TO_DRAW_IN_STAGE3,Pollutant-specific Level-1 workflow,"{""type"":""MultiPoint"",""coordinates"":[]}"
-2,FIG_3,MAIN_TEXT,FIGURE_3_TIME_SERIES_DATA,CSV_LONG_FORMAT,READY_FOR_PYTHON_R,"Monthly AOI time series NO2, SO2 and CO, 2019–2024","{""type"":""MultiPoint"",""coordinates"":[]}"
-3,FIG_4,MAIN_TEXT,Stage-2C annual Assets 2019/2024 + LONG_TERM_NO2,GEOTIFF,PUBLICATION_ELIGIBLE,"NO2 endpoint spatial distributions (2019, 2024), 2019–2024 change and hotspot persistence","{""type"":""MultiPoint"",""coordinates"":[]}"
-4,FIG_5,MAIN_TEXT,Stage-2C annual Assets 2019/2024 + LONG_TERM_CO,GEOTIFF,PUBLICATION_ELIGIBLE,"CO endpoint spatial distributions (2019, 2024), 2019–2024 change and hotspot persistence","{""type"":""MultiPoint"",""coordinates"":[]}"
-5,FIG_6,MAIN_TEXT_OR_DIAGNOSTIC_DEPENDING_STAGE3_SELECTION,FIGURE_6_SO2_SELECTED_SEASON_DATA + explicit Stage-2C seasonal raster dependency,MAM_2024_JJA_2024_TABLE_READY_RASTERS_REQUIRE_EXPLICIT_MATERIALIZATION,DO_NOT_RECOMPUTE_SILENTLY,SO2 seasonal contrast — MAM 2024 vs JJA 2024,"{""type"":""MultiPoint"",""coordinates"":[]}"
-6,FIG_7,MAIN_TEXT,FIGURE_7_AVAILABILITY_DATA,CSV_LONG_FORMAT,READY_FOR_PYTHON_R,Coverage and data availability / completeness,"{""type"":""MultiPoint"",""coordinates"":[]}"

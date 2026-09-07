@@ -1,20 +1,20 @@
 # Coverage-aware Sentinel-5P workflow for Kryvyi Rih
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22533826.svg)](https://doi.org/10.5281/zenodo.22533826)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22534101.svg)](https://doi.org/10.5281/zenodo.22534101)
 
-Release candidate: **v1.1.1**
-
-Latest archived software release: **v1.1.0**
+Current archived software release: **v1.1.1**
 
 This repository contains the Google Earth Engine implementation and supporting reproducibility materials for the 2019–2024 Sentinel-5P/TROPOMI analysis of NO₂, CO, and SO₂ over Kryvyi Rih, Ukraine.
 
-The latest archived and citable software release is `v1.1.0`:
+The current archived and citable software release is `v1.1.1`:
+
+https://doi.org/10.5281/zenodo.22534101
+
+Release `v1.1.1` is the corrective reproducibility release. It includes refreshed publication-supporting `R02` outputs, corrected AOI raster-cell-count provenance, expanded validation records, updated audit scripts, clarified scientific raster export provenance, and separate publication-rendered RGB products.
+
+The preceding archived release `v1.1.0` remains available at:
 
 https://doi.org/10.5281/zenodo.22533826
-
-The current `main` branch is being prepared as the `v1.1.1` corrective release. It includes refreshed publication-supporting `R02` outputs, corrected AOI raster-cell-count provenance, expanded validation records, updated audit scripts, and clarified scientific raster export provenance.
-
-Until the `v1.1.1` GitHub release and corresponding Zenodo record are published, DOI `10.5281/zenodo.22533826` identifies the preceding archived software release `v1.1.0`.
 
 ## Scientific purpose
 
@@ -26,7 +26,7 @@ The workflow does **not** convert satellite vertical columns to regulatory near-
 
 ## Corrective-release scope
 
-Release candidate `v1.1.1` preserves the verified scientific processing architecture while incorporating the following corrections and clarifications:
+Archived release `v1.1.1` preserves the verified scientific processing architecture while incorporating the following corrections and clarifications:
 
 - Stage-2A monthly AOI materializations use corrective version `R03`;
 - Stage-2B publication tables use corrective version `R03`;
@@ -215,8 +215,14 @@ See `RIGHTS.md` for the complete rights and reuse policy.
 
 ## Citation
 
-Until release `v1.1.1` is archived, cite the latest archived software release `v1.1.0` using:
+Cite the archived corrective software release as:
 
-Chernysh, R. V. (2026). *Coverage-aware Sentinel-5P workflow for atmospheric monitoring in Kryvyi Rih* (Version v1.1.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22533826
+Chernysh, R. V. (2026). *Coverage-aware Sentinel-5P workflow for atmospheric monitoring in Kryvyi Rih* (Version v1.1.1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22534101
+
+The version-specific DOI above identifies the exact archived `v1.1.1` release.
+
+For a DOI that always resolves to the latest Zenodo version, use:
+
+https://doi.org/10.5281/zenodo.22071246
 
 After the `v1.1.1` Zenodo record is published, the DOI badge, archived-release status, citation text, and `CITATION.cff` should be updated to the new version-specific DOI.

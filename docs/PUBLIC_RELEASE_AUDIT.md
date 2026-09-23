@@ -12,7 +12,7 @@ Release history:
 - `v1.0.0` — initial archived release, DOI `10.5281/zenodo.22071247`;
 - `v1.1.0` — expanded reproducibility release, DOI `10.5281/zenodo.22533826`;
 - `v1.1.1` — corrective reproducibility release, DOI `10.5281/zenodo.22534101`.
-- `v1.1.2` — integrity-only corrective release; DOI pending archival.
+- `v1.1.2` — integrity-only corrective release, DOI `10.5281/zenodo.22917199`.
 
 Release `v1.1.1` corrected AOI sample-count provenance, refreshed the publication outputs, expanded validation documentation, and clarified scientific raster export provenance.
 
@@ -154,39 +154,42 @@ Public accessibility supports scientific transparency, methodological inspection
 
 DOI `10.5281/zenodo.22533826` identifies archived release `v1.1.0`.
 
-Release `v1.1.1` was archived under DOI `10.5281/zenodo.22534101`. Release `v1.1.2` is an integrity-only patch and must receive its own version-specific DOI after the finalized GitHub release is archived in Zenodo.
+Release `v1.1.1` was archived under DOI `10.5281/zenodo.22534101`.
+
+Release `v1.1.2` is the current archived integrity-only corrective package, published under DOI `10.5281/zenodo.22917199`. It corrects the publication-package filename and SHA256 checksum-manifest integrity issue identified in `v1.1.1`; it does not modify Google Earth Engine processing, scientific code, R02 numerical tables, scientific GeoTIFFs, RGB products, figure-supporting data, results, or conclusions.
 
 For a future scientific-output release:
 
-1. complete and validate all 32 publication exports;
-2. replace superseded `R01` publication-output files with final `R02` files;
-3. ensure all README files match the physical repository contents;
-4. complete the security and unintended-file review;
-5. regenerate and verify `SHA256SUMS.txt`;
-6. commit the exact finalized state;
-7. create Git tag and GitHub Release `v1.1.1` from that commit;
-8. archive that release in Zenodo;
-9. verify the archived files, metadata, version, rights statement, and DOI.
+1. complete and validate all required publication exports;
+2. ensure all README files match the physical repository contents;
+3. complete the security and unintended-file review;
+4. regenerate and verify `SHA256SUMS.txt`;
+5. commit the exact finalized state;
+6. create a new version-specific Git tag and GitHub Release from that commit;
+7. archive that release in Zenodo;
+8. verify the archived files, metadata, version, rights statement, and DOI.
 
-Only after these steps should the manuscript state that the `v1.1.1` corrective reproducibility package is archived.
+Only after these steps should the manuscript state that the corresponding package is archived.
 
 ## Post-archival updates
 
-After Zenodo publishes the `v1.1.1` record:
+After Zenodo published the `v1.1.2` record:
 
-- update the root README DOI badge and archived-release wording on `main`;
-- add the verified DOI and release date to `CITATION.cff`;
-- verify the recommended Zenodo citation;
-- update the manuscript Data and Code Availability statement;
-- do not retrospectively change the files contained in the already archived Git tag without creating a subsequent version.
+- the root README DOI badge and archived-release wording on `main` were updated;
+- the verified DOI and release date were added to `CITATION.cff`;
+- the Zenodo version DOI is `10.5281/zenodo.22917199`;
+- the manuscript Data and Code Availability statement should be updated before the next submission or revision;
+- the files contained in the already archived Git tag must not be changed retrospectively without creating a subsequent version.
 
 ## Current status
 
-The scientific Master, audit scripts, validation records, metadata, publication-supporting tables, scientific GeoTIFFs, publication-rendered RGB products, and repository documentation were archived in GitHub release `v1.1.1`.
+The scientific Master, audit scripts, validation records, metadata, publication-supporting tables, scientific GeoTIFFs, publication-rendered RGB products, and repository documentation are archived in GitHub release `v1.1.2`.
 
 The corresponding Zenodo record was published successfully:
 
-https://doi.org/10.5281/zenodo.22534101
+https://doi.org/10.5281/zenodo.22917199
+
+Release `v1.1.2` is the current archived integrity-only corrective package. It corrects the publication-package filename and SHA256 checksum-manifest integrity issue and does not re-run, replace, or alter the scientific workflow outputs.
 
 Release `v1.1.1` is the current archived corrective reproducibility package.
 Release `v1.1.2` is an integrity-only package correction in preparation; it does not re-run or replace the scientific workflow outputs.

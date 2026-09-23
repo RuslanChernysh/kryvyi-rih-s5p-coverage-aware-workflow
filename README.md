@@ -1,14 +1,16 @@
 # Coverage-aware Sentinel-5P workflow for Kryvyi Rih
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22534101.svg)](https://doi.org/10.5281/zenodo.22534101)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22917199.svg)](https://doi.org/10.5281/zenodo.22917199)
 
-Current archived software release: **v1.1.2**
-
-This repository contains the Google Earth Engine implementation and supporting reproducibility materials for the 2019–2024 Sentinel-5P/TROPOMI analysis of NO₂, CO, and SO₂ over Kryvyi Rih, Ukraine.
-
-The current archived and citable software release is `v1.1.1`:
+The current archived and citable software release is `v1.1.2`:
 
 https://doi.org/10.5281/zenodo.22917199
+
+Release `v1.1.2` is an integrity-only corrective packaging release. It corrects the publication-package filename and SHA256 checksum-manifest integrity issue identified in `v1.1.1`. No Google Earth Engine processing, scientific code, `R02` numerical tables, scientific GeoTIFFs, RGB products, figure-supporting data, results, or conclusions changed.
+
+The preceding corrective reproducibility release `v1.1.1` remains available at:
+
+https://doi.org/10.5281/zenodo.22534101
 
 Release `v1.1.1` is the corrective reproducibility release. It includes refreshed publication-supporting `R02` outputs, corrected AOI raster-cell-count provenance, expanded validation records, updated audit scripts, clarified scientific raster export provenance, and separate publication-rendered RGB products.
 
@@ -24,9 +26,9 @@ The repository supports transparent reproduction, verification, and audit of the
 
 The workflow does **not** convert satellite vertical columns to regulatory near-surface concentrations and does **not** perform source-emission inversion.
 
-## Corrective-release scope
+## Scientific corrective-release scope (v1.1.1)
 
-Archived release `v1.1.1` preserves the verified scientific processing architecture while incorporating the following corrections and clarifications:
+The scientific corrections listed below were introduced in archived release `v1.1.1` and are preserved unchanged in `v1.1.2`. The `v1.1.2` integrity-only patch does not alter the verified scientific processing architecture or publication outputs.
 
 - Stage-2A monthly AOI materializations use corrective version `R03`;
 - Stage-2B publication tables use corrective version `R03`;
@@ -132,7 +134,7 @@ SHA256SUMS.txt
 
 The final version relationships are:
 
-- software release: `v1.1.1`;
+- current archived software release: `v1.1.2` (integrity-only patch; the scientific processing identifiers below remain those verified for `v1.1.1`);
 - Master script: `ARTICLE4_MASTER_MONITORING_SYSTEM_V1_1_1_CORRECTIVE_RELEASE`;
 - verified Stage-1 engine: `ARTICLE4_MULTIPOLLUTANT_ENGINE_V4_1_STAGE1_VERIFIED_R04`;
 - Stage-2A monthly AOI materializations: `ARTICLE4_STAGE2A_YEAR_MATERIALIZATION_R03_CORRECTIVE`;
@@ -199,9 +201,9 @@ Endpoint differences and spatial hotspot persistence describe patterns within th
 
 ## Integrity verification
 
-Repository files are accompanied by cryptographic checksums in `SHA256SUMS.txt`.
+Archived release files are accompanied by cryptographic checksums in `SHA256SUMS.txt`.
 
-For release `v1.1.1`, this checksum file must be generated only after all final `R02` CSV, scientific GeoTIFF, RGB GeoTIFF, documentation, code, metadata, and validation files have been added to the release snapshot.
+For archived release `v1.1.2`, the checksum manifest was regenerated only after the finalized package files were present. The ZIP published through Zenodo was independently verified against this manifest with zero checksum failures.
 
 ## Rights and reuse
 
@@ -215,14 +217,13 @@ See `RIGHTS.md` for the complete rights and reuse policy.
 
 ## Citation
 
-Cite the archived corrective software release as:
+Cite the current archived software release as:
 
-Chernysh, R. V. (2026). *Coverage-aware Sentinel-5P workflow for atmospheric monitoring in Kryvyi Rih* (Version v1.1.1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22534101
+Chernysh, R. V. (2026). *Coverage-aware Sentinel-5P workflow for atmospheric monitoring in Kryvyi Rih* (Version v1.1.2) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22917199
 
-The version-specific DOI above identifies the exact archived `v1.1.1` release.
+The version-specific DOI above identifies the exact archived `v1.1.2` release.
 
 For a DOI that always resolves to the latest Zenodo version, use:
 
 https://doi.org/10.5281/zenodo.22071246
-
 After the `v1.1.1` Zenodo record is published, the DOI badge, archived-release status, citation text, and `CITATION.cff` should be updated to the new version-specific DOI.

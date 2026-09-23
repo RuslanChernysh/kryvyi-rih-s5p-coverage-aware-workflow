@@ -1,4 +1,7 @@
 # Public-release audit
+## v1.1.2 integrity-only patch
+
+This release corrects the publication-package filename and SHA256 checksum-manifest integrity issues identified in v1.1.1. No Google Earth Engine processing, numerical table, scientific GeoTIFF, RGB product, figure-supporting data, or scientific conclusion changed.
 
 ## Purpose
 
@@ -9,8 +12,9 @@ Release history:
 - `v1.0.0` — initial archived release, DOI `10.5281/zenodo.22071247`;
 - `v1.1.0` — expanded reproducibility release, DOI `10.5281/zenodo.22533826`;
 - `v1.1.1` — corrective reproducibility release, DOI `10.5281/zenodo.22534101`.
+- `v1.1.2` — integrity-only corrective release; DOI pending archival.
 
-Release candidate `v1.1.1` corrects AOI sample-count provenance, refreshes the publication outputs, expands validation documentation, and clarifies scientific raster export provenance.
+Release `v1.1.1` corrected AOI sample-count provenance, refreshed the publication outputs, expanded validation documentation, and clarified scientific raster export provenance.
 
 ## Scientific Master policy
 
@@ -150,9 +154,9 @@ Public accessibility supports scientific transparency, methodological inspection
 
 DOI `10.5281/zenodo.22533826` identifies archived release `v1.1.0`.
 
-Release candidate `v1.1.1` must not be described as archived under that DOI. A new version-specific DOI must be obtained from the Zenodo record created for the finalized `v1.1.1` GitHub release.
+Release `v1.1.1` was archived under DOI `10.5281/zenodo.22534101`. Release `v1.1.2` is an integrity-only patch and must receive its own version-specific DOI after the finalized GitHub release is archived in Zenodo.
 
-Before release:
+For a future scientific-output release:
 
 1. complete and validate all 32 publication exports;
 2. replace superseded `R01` publication-output files with final `R02` files;
@@ -185,3 +189,4 @@ The corresponding Zenodo record was published successfully:
 https://doi.org/10.5281/zenodo.22534101
 
 Release `v1.1.1` is the current archived corrective reproducibility package.
+Release `v1.1.2` is an integrity-only package correction in preparation; it does not re-run or replace the scientific workflow outputs.

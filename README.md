@@ -2,13 +2,13 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22534101.svg)](https://doi.org/10.5281/zenodo.22534101)
 
-Current archived software release: **v1.1.1**
+Current archived software release: **v1.1.2**
 
 This repository contains the Google Earth Engine implementation and supporting reproducibility materials for the 2019–2024 Sentinel-5P/TROPOMI analysis of NO₂, CO, and SO₂ over Kryvyi Rih, Ukraine.
 
 The current archived and citable software release is `v1.1.1`:
 
-https://doi.org/10.5281/zenodo.22534101
+https://doi.org/10.5281/zenodo.22917199
 
 Release `v1.1.1` is the corrective reproducibility release. It includes refreshed publication-supporting `R02` outputs, corrected AOI raster-cell-count provenance, expanded validation records, updated audit scripts, clarified scientific raster export provenance, and separate publication-rendered RGB products.
 
